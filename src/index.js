@@ -1,15 +1,18 @@
-import sumar from "./App";
+import ListaTareas from "./ListaTareas.js";
 
-const first = document.querySelector("#first-number");
-const second = document.querySelector("#second-number");
-const form = document.querySelector("#sumar-form");
-const div = document.querySelector("#resultado-div");
+let listaTareasAgregadas = new ListaTareas();
+
+const tarea = document.querySelector("#tarea");
+const listaTareas = document.querySelector("#lista-tareas");
+const form = document.querySelector("#agregarTareas-form");
 
 form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const firstNumber = Number.parseInt(first.value);
-  const secondNumber = Number.parseInt(second.value);
-
-  div.innerHTML = "<p>" + sumar(firstNumber, secondNumber) + "</p>";
+  event.preventDefault()
+  if(listaTareas.innerHTML==""){
+    listaTareasAgregadas = new ListaTareas();
+  }
+  let tituloTarea = tarea.value;
+  listaTareasAgregadas.agregarTarea(tituloTarea);
+  listaTareas.innerHTML = listaTareasAgregadas.getUlListaTareas();
 });
+
