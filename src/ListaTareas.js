@@ -5,7 +5,7 @@ class ListaTareas{
     }
 
 <<<<<<< HEAD
-    agregarTarea(titulo){
+    /*agregarTarea(titulo){
         var tarea = new Tarea(titulo);
         this.ListaTareas.push(tarea);
     }
@@ -14,6 +14,8 @@ class ListaTareas{
         let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+"</li>");
         return "<ul>"+tareasLi.join("")+"</ul>";
     }
+    */
+<<<<<<< HEAD
 =======
     agregarTarea(titulo,descripcion){
         if(titulo!=""){
@@ -61,8 +63,6 @@ class ListaTareas{
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").length;
     }
 
-    
-
     filtrarPorDescripcion(textoDeFiltro){
         var textoDeFiltro_menor60 = this.controlCantidadPalabrasInFiltro(textoDeFiltro);
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion().toLowerCase().includes(textoDeFiltro_menor60.toLowerCase())).map(tarea=>tarea.getId());
@@ -73,11 +73,14 @@ class ListaTareas{
         }
         return descripcion
     }
-
-    
-
-    
->>>>>>> 056bc7a0a6f64998653bb9c1fbdb346bb63b8152
+    getListaTitulosTareas(){
+        return this.ListaTareas.map(function(tarea){
+            return tarea.getTitulo();
+        });
+    }
+    filtrarTitulo(tituloBuscado){
+        return this.ListaTareas.filter(word => word.getTitulo() === tituloBuscado);
+    }
 }
 
 export default ListaTareas;

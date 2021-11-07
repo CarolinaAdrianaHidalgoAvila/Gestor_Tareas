@@ -5,7 +5,9 @@ let listaTareasAgregadas = new ListaTareas();
 
 const tarea = document.querySelector("#tarea");
 const listaTareas = document.querySelector("#lista-tareas");
+const listaTareasFiltradas = document.querySelector("#lista-tareasFiltradas");
 const form = document.querySelector("#agregarTareas-form");
+const boton_elem = document.querySelector("#crear-tarea");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault()
@@ -16,7 +18,14 @@ form.addEventListener("submit", (event) => {
   listaTareasAgregadas.agregarTarea(tituloTarea);
   listaTareas.innerHTML = listaTareasAgregadas.getUlListaTareas();
 });
+/*form.addEventListener("button", (event) => {
+  event.preventDefault()
+   let  tituloBuscado = tarea.value;
+  let tarea =listaTareasAgregadas.filtrarTitulo(tituloBuscado);
+  listaTareasFiltradas.innerHTML = tarea.value;
+});
 
+<<<<<<< HEAD
 =======
 import Tarea from "./Tarea.js";
 let listaTareasAgregadas = new ListaTareas();
@@ -55,3 +64,6 @@ function mostrarDescripcion(idTarea){
 
 export default mostrarDescripcion;
 >>>>>>> 056bc7a0a6f64998653bb9c1fbdb346bb63b8152
+=======
+*/
+>>>>>>> filtrarTitulo
