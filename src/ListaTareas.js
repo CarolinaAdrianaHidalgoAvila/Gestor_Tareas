@@ -13,14 +13,24 @@ class ListaTareas{
         return "<ul>"+tareasLi.join("")+"</ul>";
     }
     */
+    controlNumeroLetrasTitulo(titulo){
+        var validacion=true;
+        if(titulo.length>30) 
+        {
+            validacion=false;
+        }
+        return validacion;
+    }
     agregarTarea(titulo,descripcion){
-        if(titulo!=""){
+       
+        if(titulo!="" ){
+            if(this.controlNumeroLetrasTitulo(titulo)==true){
             var id = this.ListaTareas.length+1;
             var tarea = new Tarea(titulo,descripcion,"tarea-"+id);
             this.ListaTareas.push(tarea);
+            }
         }      
     }
-
     getDescripcionTareas(){
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").map(tarea=>tarea.getDescripcion());
     }
@@ -73,12 +83,6 @@ class ListaTareas{
         return this.ListaTareas.map(function(tarea){
             return tarea.getTitulo();
         });
-    }
-    controlCantidadPalabrasInFiltroTitulo(titulo){
-        if (titulo.split(" ").length > 30 ){
-            return titulo.split(" ").slice(0,60).join(" ")
-        }
-        return titulo
     }
     filtrarTitulo(tituloABuscado){
         let tituloBuscado= this.ListaTareas.filter(word => word.getTitulo() === tituloABuscado);

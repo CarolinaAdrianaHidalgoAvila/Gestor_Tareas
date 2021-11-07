@@ -7,6 +7,11 @@ describe("Lista de Tareas", () => {
         listaTareas1.agregarTarea("hola");
         expect(listaTareas1.getListaTitulosTareas()).toEqual(["hola"]);
     });
+     it("controlar longitud de titulo", () => {
+        var listaTareas1 = new ListaTareas();
+        listaTareas1.agregarTarea("qwertyuiopasdfghjklñzxcvbnmqwerer");
+        expect(listaTareas1.getListaTitulosTareas()).toEqual([]);
+    });
     it("filtrar en lista", () => {
         var listaTareas1 = new ListaTareas();
         listaTareas1.agregarTarea("tarea1");
