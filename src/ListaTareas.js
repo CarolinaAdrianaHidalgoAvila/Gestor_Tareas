@@ -50,9 +50,22 @@ class ListaTareas{
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").length;
     }
 
+    
+
     filtrarPorDescripcion(textoDeFiltro){
-        return this.ListaTareas.filter(tarea=>tarea.getDescripcion().toLowerCase().includes(textoDeFiltro.toLowerCase())).map(tarea=>tarea.getId());
+        var textoDeFiltro_menor60 = this.controlCantidadPalabrasInFiltro(textoDeFiltro);
+        return this.ListaTareas.filter(tarea=>tarea.getDescripcion().toLowerCase().includes(textoDeFiltro_menor60.toLowerCase())).map(tarea=>tarea.getId());
     }
+    controlCantidadPalabrasInFiltro(descripcion){
+        if (descripcion.split(" ").length > 60 ){
+            return descripcion.split(" ").slice(0,60).join(" ")
+        }
+        return descripcion
+    }
+
+    
+
+    
 }
 
 export default ListaTareas;
