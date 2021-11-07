@@ -79,18 +79,6 @@ class ListaTareas{
     getCategoriaTarea(tituloT){
         let tareaC= this.ListaTareas.find(tarea=>tarea.getTitulo()==tituloT);
         return tareaC.getCategoria();
-       /* return this.ListaTareas.map(function(tarea){
-            return tarea.getCategoria();
-        });*/
-        /*let tareaC = ListaTareas.find(tarea);
-        return tareaC.getCategoria();*/
-
-        /* this.ListaTareas.map(function(tarea){*/
-        //return tareaCategoria.getCategoriaTarea();
-        
-        //});
-        //return tarea.getCategoriaTarea();
-
     }
     filtrarTitulo(tituloABuscado){
         let tituloBuscado= this.ListaTareas.filter(word => word.getTitulo() === tituloABuscado);
@@ -106,6 +94,18 @@ class ListaTareas{
     
     esTareaConFechaPasada(tarea){
         return tarea.esTareaConFechaPasada();
+    }
+    filtrarCategorias(categoria){
+        let categorias=[]
+        //let categorias=  this.ListaTareas.map(word => word.getCategoria() === categoria).getListaTitulosTareas()
+       // categorias=categorias.map(tarea => tarea.getTitulo())
+         this.ListaTareas.forEach(element => {
+            if(element.getCategoria()==categoria){
+                categorias.push(element.getTitulo())
+            }
+        });
+        console.log(categorias);
+        return categorias;
     }
     
 }
