@@ -42,8 +42,13 @@ class ListaTareas{
     }
 
     getTareaPorId(idTarea){
-        return this.ListaTareas.find(tarea => tarea.getId()==idTarea);
+        var tarea = this.ListaTareas.find(tarea => tarea.getId()==idTarea); 
+        if (tarea == undefined ){
+            return new Tarea("");
+        }
+        return tarea;
     }
+
 
     getCantidadTareas(){
         return this.ListaTareas.length;

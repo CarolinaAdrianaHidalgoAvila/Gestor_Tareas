@@ -85,5 +85,53 @@ describe("Añadir Descripcion a Tarea", () => {
         expect(listaTareas.getCantidadTareas()).toEqual(1);
     });
 
+    // CC2
+    it("se deberia ver la descripcion de un tarea a partir de un id", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica")
+        var tarea = listaTareas.getTareaPorId("tarea-1") 
+        expect(  tarea.getDescripcion()  ).toEqual("tarea de fisica");
+    });
+    it("se deberia ver la descripcion de un tarea a partir de un id", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica")
+        listaTareas.agregarTarea("tarea2","tarea de quimica")
+        var tarea = listaTareas.getTareaPorId("tarea-2") 
+        expect(  tarea.getDescripcion()  ).toEqual("tarea de quimica");
+    });
+    it("se deberia ver la descripcion vacia si se busca de un id que no existe en la lista", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica")
+        listaTareas.agregarTarea("tarea2","tarea de quimica")
+        var tarea = listaTareas.getTareaPorId("tarea-10") 
+        expect(  tarea.getDescripcion()  ).toEqual("");
+    });
+    it("se deberia ver la descripcion vacia si se busca de un id que no existe en la lista", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica")
+        listaTareas.agregarTarea("tarea2","tarea de quimica")
+        var tarea = listaTareas.getTareaPorId("tarea-854") 
+        expect(  tarea.getDescripcion()  ).toEqual("");
+    });
+    it("se deberia ver la descripcion vacia si se busca de un id de tarea sin descripción", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea de fisica","Volver  a hacer formulario, se perdio el anterior")
+        listaTareas.agregarTarea("lavar platos","Comprar nueva esponja")
+        listaTareas.agregarTarea("tarea de quimica","investigar la diferencia entre metales y no metales")
+        listaTareas.agregarTarea("cumpleaños hermana","")
+        var tarea = listaTareas.getTareaPorId("tarea-4") 
+        expect(  tarea.getDescripcion()  ).toEqual("");
+    });
+    it("se deberia ver la descripcion vacia si se busca de un id de tarea sin descripción", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea de fisica","")
+        listaTareas.agregarTarea("lavar platos","Comprar nueva esponja")
+        listaTareas.agregarTarea("tarea de quimica","")
+        listaTareas.agregarTarea("cumpleaños hermana","")
+        var tarea = listaTareas.getTareaPorId("tarea-3") 
+        expect(  tarea.getDescripcion()  ).toEqual("");
+    });
+
+
 });
 
