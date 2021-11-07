@@ -1,5 +1,4 @@
 import ListaTareas from "./ListaTareas.js";
-<<<<<<< HEAD
 
 let listaTareasAgregadas = new ListaTareas();
 
@@ -66,4 +65,3 @@ export default mostrarDescripcion;
 >>>>>>> 056bc7a0a6f64998653bb9c1fbdb346bb63b8152
 =======
 */
->>>>>>> filtrarTitulo

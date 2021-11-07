@@ -3,8 +3,6 @@ class ListaTareas{
     constructor() {
         this.ListaTareas = [];
     }
-
-<<<<<<< HEAD
     /*agregarTarea(titulo){
         var tarea = new Tarea(titulo);
         this.ListaTareas.push(tarea);
@@ -15,8 +13,6 @@ class ListaTareas{
         return "<ul>"+tareasLi.join("")+"</ul>";
     }
     */
-<<<<<<< HEAD
-=======
     agregarTarea(titulo,descripcion){
         if(titulo!=""){
             var id = this.ListaTareas.length+1;

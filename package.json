@@ -6,17 +6,8 @@
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html",
-<<<<<<< HEAD
-    "test": "jest --watch --coverage --env='jsdom'",
-<<<<<<< HEAD
-    "test-once": "jest --coverage"
-=======
-    "test-once": "jest --coverage --env='jsdom'"
->>>>>>> 056bc7a0a6f64998653bb9c1fbdb346bb63b8152
-=======
     "test": "jest --watch --env='jsdom' --coverage",
     "test-once": "jest --env='jsdom' --coverage"
->>>>>>> filtrarTitulo
   },
   "author": "Grupo_1",
   "license": "ISC",

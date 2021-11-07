@@ -13,7 +13,7 @@ describe("Lista de Tareas", () => {
         listaTareas1.agregarTarea("tarea2");
         listaTareas1.agregarTarea("tarea3");
         var tarea = listaTareas1.filtrarTitulo("tarea1");
-        expect(tarea).toEqual( [{"titulo": "tarea1"}]);
+        expect(tarea).toEqual( [{"descripcion": "","id": "tarea-1","titulo": "tarea1"}]);
     });
    
 });

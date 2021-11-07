@@ -25,7 +25,7 @@ describe("Añadir Descripcion Tarea", () => {
     form.submit();
     expect(lista_elem.innerHTML).toEqual("<ul><li>Limpiar cocina</li></ul>");
   });
-
+/*
   //CC2
   it("Muestra boton descripcion si la tarea fue creada con descripcion", () => {
     const tarea_elem = document.querySelector("#tarea");  
@@ -65,7 +65,7 @@ describe("Añadir Descripcion Tarea", () => {
     expect(dialogo_descripcion.innerHTML).toEqual('Conectar sensores');
   });
 
-
+*/
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    
     lista_elem.innerHTML = "";
