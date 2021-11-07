@@ -83,7 +83,42 @@ describe("Añadir Fecha Límite a Tarea", () => {
         listaTareas.agregarTarea("ir a correr","correr 50 minutos","","2022-03-19T20:29");
         listaTareas.agregarTarea("tarea de mate","ejercicios suma","","2022-08-07T23:29");
         expect(listaTareas.getFechaLimiteTareas()).toEqual([new Date("2023-10-09T23:29"),new Date("2022-03-19T20:29"),new Date("2022-08-07T23:29")]);
-    }); 
+    });
+    //CC2
+    it("se deberia ver la fecha limite de un tarea a partir de un id", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","2023-10-09T23:29");
+        var tarea = listaTareas.getTareaPorId("tarea-1");
+        expect(tarea.getFechaLimite()).toEqual(new Date("2023-10-09T23:29"));
+    });
+    it("se deberia ver la fecha limite de un tarea a partir de un id", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","2023-10-09T23:29");
+        listaTareas.agregarTarea("tarea2","tarea de mate","","2022-06-09T23:29");
+        var tarea = listaTareas.getTareaPorId("tarea-2"); 
+        expect(tarea.getFechaLimite()).toEqual(new Date("2022-06-09T23:29"));
+    });
+    it("se deberia ver la fecha limite null de un tarea sin fecha limite a partir de un id", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","2023-10-09T23:29");
+        listaTareas.agregarTarea("tarea2","tarea de mate");
+        var tarea = listaTareas.getTareaPorId("tarea-2"); 
+        expect(tarea.getFechaLimite()).toEqual(null);
+    });
+    it("se deberia ver fecha limite null si se busca de un id que no existe en la lista", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","2022-06-09T23:29");
+        listaTareas.agregarTarea("tarea2","tarea de quimica");  
+        var tarea = listaTareas.getTareaPorId("tarea-20");        
+        expect(tarea.getFechaLimite()).toEqual(null);
+    });
+    it("se deberia ver fecha limite vacia si se busca de un id que no existe en la lista", () => {
+        var listaTareas = new ListaTareas();      
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","2022-06-09T23:29");
+        listaTareas.agregarTarea("tarea2","tarea de quimica");  
+        var tarea = listaTareas.getTareaPorId("tarea-dsf0"); 
+        expect(tarea.getFechaLimite()).toEqual(null);
+    });
 
 });
 
