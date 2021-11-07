@@ -53,7 +53,6 @@ describe("Crear Tarea", () => {
     form.submit();  
     expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea</li><li>Segunda tarea</li><li>Tercera tarea</li></ul>");
   });
-
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    
     lista_elem.innerHTML = "";

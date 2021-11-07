@@ -4,9 +4,13 @@
     <h2>Ingrese una Tarea en el recuadro</h2>
     <form id="agregarTareas-form">
       <input type="text" id="tarea"> 
-      <input type="submit" value="Crear Tarea"/>       
+      <input type="submit" name= "agregar" value="Crear Tarea"/> 
+        
+      <input type="text" id="buscar"> 
+      <input type="button" name= "filtrar" value="tareafiltrada"/>>     
   </form>
     <div id="lista-tareas"></div>
+    <div id="lista-tareasFiltradas"></div>
     <script type="module" src="./src/index.js"></script>
   </body>
 </html>
