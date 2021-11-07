@@ -7,6 +7,46 @@ describe("Lista de Tareas", () => {
         listaTareas1.agregarTarea("hola");
         expect(listaTareas1.getListaTitulosTareas()).toEqual(["hola"]);
     });
+    it("Tarea sin titulo", () => {
+        var listaTareas1 = new ListaTareas();
+        listaTareas1.agregarTarea("");
+        expect(listaTareas1.getListaTitulosTareas()).toEqual([]);
+    });
+    it("lista tareas con una vacia", () => {
+        var listaTareas1 = new ListaTareas();
+         listaTareas1.agregarTarea("tarea1");
+        listaTareas1.agregarTarea("tarea2");
+        listaTareas1.agregarTarea("");
+        expect(listaTareas1.getListaTitulosTareas()).toEqual( ["tarea1","tarea2"]);
+    });
+     it("lista tareas con una vacia", () => {
+        var listaTareas1 = new ListaTareas();
+         listaTareas1.agregarTarea("tarea1");
+         listaTareas1.agregarTarea("");
+        listaTareas1.agregarTarea("tarea3");
+        expect(listaTareas1.getListaTitulosTareas()).toEqual( ["tarea1","tarea3"]);
+    });
+     it("lista tareas con un titulo invalido", () => {
+        var listaTareas1 = new ListaTareas();
+         listaTareas1.agregarTarea("tarea1");
+        listaTareas1.agregarTarea("tarea2");
+        listaTareas1.agregarTarea("qwertyuiopasdfghjklñzxcvbnmqwerer");
+        expect(listaTareas1.getListaTitulosTareas()).toEqual( ["tarea1","tarea2"]);
+    });
+    it("lista tareas con un titulo invalido", () => {
+        var listaTareas1 = new ListaTareas();
+         listaTareas1.agregarTarea("tarea1");
+          listaTareas1.agregarTarea("qwertyuiopasdfghjklñzxcvbnmqwerer");
+        listaTareas1.agregarTarea("tarea3");
+        expect(listaTareas1.getListaTitulosTareas()).toEqual( ["tarea1","tarea3"]);
+    });
+    it("lista tareas con un titulo invalido y titulo vacio", () => {
+        var listaTareas1 = new ListaTareas();
+         listaTareas1.agregarTarea("tarea1");
+        listaTareas1.agregarTarea("");
+        listaTareas1.agregarTarea("qwertyuiopasdfghjklñzxcvbnmqwerer");
+        expect(listaTareas1.getListaTitulosTareas()).toEqual( ["tarea1"]);
+    });
      it("controlar longitud de titulo", () => {
         var listaTareas1 = new ListaTareas();
         listaTareas1.agregarTarea("qwertyuiopasdfghjklñzxcvbnmqwerer");
