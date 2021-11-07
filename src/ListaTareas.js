@@ -8,7 +8,8 @@ class ListaTareas{
         if(titulo!=""){
             var id = this.ListaTareas.length+1;
             var tarea = new Tarea(titulo,descripcion,"tarea-"+id,categoria,fechaLimite);
-            this.ListaTareas.push(tarea);
+            if(tarea.fechaLimite==null) this.ListaTareas.push(tarea);
+            if (! this.esTareaConFechaPasada(tarea)) this.ListaTareas.push(tarea);
         }      
     }
 
@@ -66,7 +67,10 @@ class ListaTareas{
     getFechaLimiteTareas(){       
         return this.ListaTareas.map(tarea=>tarea.getFechaLimite());
     }
-
+    
+    esTareaConFechaPasada(tarea){
+        return tarea.esTareaConFechaPasada();
+    }
     
 }
 

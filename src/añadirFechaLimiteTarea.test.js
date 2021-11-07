@@ -4,8 +4,8 @@ import Tarea from  "./Tarea.js"
 describe("Añadir Fecha Límite a Tarea", () => {
     //CC1
     it("deberia poder crear tarea con fecha limite", () => {
-        var tarea = new Tarea("ir a piscina","nadar 50 minutos","tarea-1","","2021-11-07T13:29");
-        expect(tarea.getFechaLimite()).toEqual(new Date("2021-11-07T13:29"));
+        var tarea = new Tarea("ir a piscina","nadar 50 minutos","tarea-1","","2022-11-07T13:29");
+        expect(tarea.getFechaLimite()).toEqual(new Date("2022-11-07T13:29"));
     }); 
     it("deberia poder crear tarea con fecha limite", () => {
         var tarea = new Tarea("ir a piscina","nadar 50 minutos","tarea-1","","2022-08-07T23:29");
@@ -118,6 +118,61 @@ describe("Añadir Fecha Límite a Tarea", () => {
         listaTareas.agregarTarea("tarea2","tarea de quimica");  
         var tarea = listaTareas.getTareaPorId("tarea-dsf0"); 
         expect(tarea.getFechaLimite()).toEqual(null);
+    });
+    //CC3
+    it("deberia controlar si tarea tiene fecha pasada", () => {
+        var tarea = new Tarea("tarea1","tarea de fisica","tarea-1","","2020-06-09T23:29");      
+        expect(tarea.esTareaConFechaPasada()).toEqual(true);
+    });
+    it("deberia controlar si tarea tiene fecha pasada", () => {          
+        var tarea = new Tarea("tarea1","tarea de fisica","tarea-1","","2002-06-09T23:29");          
+        expect(tarea.esTareaConFechaPasada()).toEqual(true);
+    });
+    it("deberia controlar si tarea tiene fecha pasada", () => {          
+        var tarea = new Tarea("tarea1","tarea de fisica","tarea-1","","2022-06-09T23:29");      
+        expect(tarea.esTareaConFechaPasada()).toEqual(false);
+    });
+    it("deberia controlar si tarea tiene fecha pasada", () => {          
+        var tarea = new Tarea("tarea1","tarea de mate","tarea-1","","2025-08-09T23:29");      
+        expect(tarea.esTareaConFechaPasada()).toEqual(false);
+    });
+    it("no deberia agregar tarea con fecha pasada a la lista", () => {
+        var listaTareas = new ListaTareas();   
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","2002-06-09T23:29");      
+        expect(listaTareas.getCantidadTareas()).toEqual(0);
+    });
+    it("no deberia agregar tarea con fecha pasada a la lista", () => {
+        var listaTareas = new ListaTareas();   
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","1999-01-18T23:29");      
+        expect(listaTareas.getCantidadTareas()).toEqual(0);
+    });
+    it("no deberia agregar tarea con fecha pasada a la lista", () => {
+        var listaTareas = new ListaTareas();   
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","1999-01-18T23:29");   
+        listaTareas.agregarTarea("tarea2","tarea de fisica","","1999-01-18T23:29");   
+        listaTareas.agregarTarea("tarea3","tarea de fisica","","1999-01-18T23:29");      
+        expect(listaTareas.getCantidadTareas()).toEqual(0);
+    });
+    it("no deberia agregar tarea con fecha pasada a la lista", () => {
+        var listaTareas = new ListaTareas();   
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","1999-01-18T23:29");   
+        listaTareas.agregarTarea("tarea2","tarea de fisica","","2025-01-18T23:29");   
+        listaTareas.agregarTarea("tarea3","tarea de fisica","","1999-01-18T23:29");      
+        expect(listaTareas.getCantidadTareas()).toEqual(1);
+    });
+    it("no deberia agregar tarea con fecha pasada a la lista", () => {
+        var listaTareas = new ListaTareas();   
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","1999-01-18T23:29");   
+        listaTareas.agregarTarea("tarea2","tarea de fisica","","2025-01-18T23:29");   
+        listaTareas.agregarTarea("tarea3","tarea de fisica","","2022-01-18T23:29");      
+        expect(listaTareas.getCantidadTareas()).toEqual(2);
+    });
+    it("no deberia agregar tarea con fecha pasada a la lista", () => {
+        var listaTareas = new ListaTareas();   
+        listaTareas.agregarTarea("tarea1","tarea de fisica","","1999-01-18T23:29");   
+        listaTareas.agregarTarea("tarea2","tarea de fisica","");   
+        listaTareas.agregarTarea("tarea3","tarea de fisica","","2022-01-18T23:29");      
+        expect(listaTareas.getCantidadTareas()).toEqual(2);
     });
 
 });

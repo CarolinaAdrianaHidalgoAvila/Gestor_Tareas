@@ -40,6 +40,10 @@ class Tarea{
         }   
     }
 
+    esTareaConFechaPasada(){        
+        return this.fechaLimite < new Date();
+    }
+
     
 
 }
