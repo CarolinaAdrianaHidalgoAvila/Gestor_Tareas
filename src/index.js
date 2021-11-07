@@ -26,10 +26,10 @@ form.addEventListener("submit", (event) => {
 });
 
 function mostrarDescripcion(idTarea){
-  console.log("CLICK",idTarea);
+
   const dialogoDescripcion = document.querySelector("#dialogo-descripcion");
   const tarea = listaTareasAgregadas.getTareaPorId(idTarea);
-  console.log("get",tarea)
+
   dialogoDescripcion.innerHTML = tarea.getDescripcion();
   //dialogoDescripcion.showModal();
 }
