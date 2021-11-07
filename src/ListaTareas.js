@@ -74,8 +74,18 @@ class ListaTareas{
             return tarea.getTitulo();
         });
     }
-    filtrarTitulo(tituloBuscado){
-        return this.ListaTareas.filter(word => word.getTitulo() === tituloBuscado);
+    controlCantidadPalabrasInFiltroTitulo(titulo){
+        if (titulo.split(" ").length > 30 ){
+            return titulo.split(" ").slice(0,60).join(" ")
+        }
+        return titulo
+    }
+    filtrarTitulo(tituloABuscado){
+        let tituloBuscado= this.ListaTareas.filter(word => word.getTitulo() === tituloABuscado);
+         if(tituloBuscado.length == 0){
+            return "No existe";
+        }
+        return tituloBuscado;
     }
 }
 
