@@ -71,3 +71,27 @@ describe("Lista de Tareas", () => {
     });
    
 });
+describe("Lista de Tareas con categoría", ()=>{
+    it("Agregar una categoria de las disponibles", () => {
+        var listaTareas1 = new ListaTareas();
+        listaTareas1.agregarTarea("Resolver examen","","Estudio");
+        expect(listaTareas1.getCategoriaTarea("Resolver examen")).toEqual("Estudio");
+    });
+    it("Agregar una categoria de las disponibles", () => {
+        var listaTareas1 = new ListaTareas();
+        listaTareas1.agregarTarea("Tarea1","","Estudio");
+        listaTareas1.agregarTarea("Regar las plantas","","Personal");
+        expect(listaTareas1.getCategoriaTarea("Regar las plantas")).toEqual("Personal");
+    });
+    it("Agregar una categoria de las disponibles", () => {
+        var listaTareas1 = new ListaTareas();
+        listaTareas1.agregarTarea("Tarea1","","Estudio");
+        listaTareas1.agregarTarea("Hacer balance","","Trabajo");
+        expect(listaTareas1.getCategoriaTarea("Hacer balance")).toEqual("Trabajo");
+    });
+    it("Agregar una tarea sin categoría", () => {
+        var listaTareas1 = new ListaTareas();
+        listaTareas1.agregarTarea("Tarea1");
+        expect(listaTareas1.getCategoriaTarea("Tarea1")).toEqual("Sin categoria");
+    });
+})

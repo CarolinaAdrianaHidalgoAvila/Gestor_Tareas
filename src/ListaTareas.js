@@ -13,7 +13,7 @@ class ListaTareas{
         return validacion;
     }
 
-    agregarTarea(titulo,descripcion,categoria,fechaLimite){
+    agregarTarea(titulo,descripcion,categoria="Sin categoria",fechaLimite){
         if(titulo!=""){
             if(this.controlNumeroLetrasTitulo(titulo)==true){
                 var id = this.ListaTareas.length+1;
@@ -75,6 +75,22 @@ class ListaTareas{
         return this.ListaTareas.map(function(tarea){
             return tarea.getTitulo();
         });
+    }
+    getCategoriaTarea(tituloT){
+        let tareaC= this.ListaTareas.find(tarea=>tarea.getTitulo()==tituloT);
+        return tareaC.getCategoria();
+       /* return this.ListaTareas.map(function(tarea){
+            return tarea.getCategoria();
+        });*/
+        /*let tareaC = ListaTareas.find(tarea);
+        return tareaC.getCategoria();*/
+
+        /* this.ListaTareas.map(function(tarea){*/
+        //return tareaCategoria.getCategoriaTarea();
+        
+        //});
+        //return tarea.getCategoriaTarea();
+
     }
     filtrarTitulo(tituloABuscado){
         let tituloBuscado= this.ListaTareas.filter(word => word.getTitulo() === tituloABuscado);

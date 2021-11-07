@@ -5,6 +5,7 @@ class Tarea{
         this.titulo = titulo;
         this.descripcion = this.controlCantidadPalabras(descripcion);
         this.id = id;  
+        this.categoria=categoria;
         this.setFechaLimite(fechaLimite);
     }
     controlCantidadPalabras(descripcion){
@@ -15,6 +16,9 @@ class Tarea{
     }
     getId(){
         return this.id;
+    }
+    getCategoria(){
+        return this.categoria;
     }
 
     getTitulo(){
