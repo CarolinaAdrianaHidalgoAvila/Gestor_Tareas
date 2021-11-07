@@ -47,7 +47,6 @@ describe("Añadir Descripcion Tarea", () => {
     descripcion.value = "Comprar nueva escoba y botar los vasos viejos";
     form.submit();
     const boton_descripcion = document.querySelector("#tarea-1");
-    console.log("ID",boton_descripcion.id)
     boton_descripcion.click();
     expect(dialogo_descripcion.innerHTML).toEqual('Comprar nueva escoba y botar los vasos viejos');
   });
@@ -61,7 +60,6 @@ describe("Añadir Descripcion Tarea", () => {
     descripcion.value = "Conectar sensores";
     form.submit();
     const boton_descripcion = document.querySelector("#tarea-1");
-    console.log("ID",boton_descripcion.id)
     boton_descripcion.click();
     expect(dialogo_descripcion.innerHTML).toEqual('Conectar sensores');
   });

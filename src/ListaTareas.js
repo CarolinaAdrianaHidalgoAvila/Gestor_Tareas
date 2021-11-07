@@ -1,14 +1,20 @@
 import Tarea from "./Tarea.js"
-import mostrarDescripcion from "./index.js";
+
 class ListaTareas{
     constructor() {
         this.ListaTareas = [];
     }
 
     agregarTarea(titulo,descripcion){
-        var id = this.ListaTareas.length+1;
-        var tarea = new Tarea(titulo,descripcion,"tarea-"+id);
-        this.ListaTareas.push(tarea);
+        if(titulo!=""){
+            var id = this.ListaTareas.length+1;
+            var tarea = new Tarea(titulo,descripcion,"tarea-"+id);
+            this.ListaTareas.push(tarea);
+        }      
+    }
+
+    getDescripcionTareas(){
+        return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").map(tarea=>tarea.getDescripcion());
     }
 
     getTareaConDescripcion(tarea){        
@@ -27,8 +33,15 @@ class ListaTareas{
     }
 
     getTareaPorId(idTarea){
-        console.log(idTarea,"getT",this.ListaTareas[0].getId()==idTarea)
         return this.ListaTareas.find(tarea => tarea.getId()==idTarea);
+    }
+
+    getCantidadTareas(){
+        return this.ListaTareas.length;
+    }
+
+    getCantidadTareasConDescripcion(){
+        return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").length;
     }
 }
 
