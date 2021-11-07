@@ -18,7 +18,8 @@ describe("Lista de Tareas", () => {
         listaTareas1.agregarTarea("tarea2");
         listaTareas1.agregarTarea("tarea3");
         var tarea = listaTareas1.filtrarTitulo("tarea1");
-        expect(tarea).toEqual( [{"descripcion": "","id": "tarea-1","titulo": "tarea1"}]);
+        console.log(tarea)
+        expect(tarea[0].getId()).toEqual("tarea-1");
     });
      it("filtrar en lista pero no existe", () => {
         var listaTareas1 = new ListaTareas();

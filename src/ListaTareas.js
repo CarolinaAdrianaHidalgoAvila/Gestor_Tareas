@@ -3,16 +3,7 @@ class ListaTareas{
     constructor() {
         this.ListaTareas = [];
     }
-    /*agregarTarea(titulo){
-        var tarea = new Tarea(titulo);
-        this.ListaTareas.push(tarea);
-    }
 
-    getUlListaTareas(){
-        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+"</li>");
-        return "<ul>"+tareasLi.join("")+"</ul>";
-    }
-    */
     controlNumeroLetrasTitulo(titulo){
         var validacion=true;
         if(titulo.length>30) 
@@ -21,14 +12,15 @@ class ListaTareas{
         }
         return validacion;
     }
-    agregarTarea(titulo,descripcion){
-       
-        if(titulo!="" ){
+
+    agregarTarea(titulo,descripcion,categoria,fechaLimite){
+        if(titulo!=""){
             if(this.controlNumeroLetrasTitulo(titulo)==true){
-            var id = this.ListaTareas.length+1;
-            var tarea = new Tarea(titulo,descripcion,"tarea-"+id);
-            this.ListaTareas.push(tarea);
-            }
+                var id = this.ListaTareas.length+1;
+                var tarea = new Tarea(titulo,descripcion,"tarea-"+id,categoria,fechaLimite);
+                if(tarea.fechaLimite==null) this.ListaTareas.push(tarea);
+                if (! this.esTareaConFechaPasada(tarea)) this.ListaTareas.push(tarea);
+            }   
         }      
     }
     getDescripcionTareas(){
@@ -91,6 +83,15 @@ class ListaTareas{
         }
         return tituloBuscado;
     }
+
+    getFechaLimiteTareas(){       
+        return this.ListaTareas.map(tarea=>tarea.getFechaLimite());
+    }
+    
+    esTareaConFechaPasada(tarea){
+        return tarea.esTareaConFechaPasada();
+    }
+    
 }
 
 export default ListaTareas;
