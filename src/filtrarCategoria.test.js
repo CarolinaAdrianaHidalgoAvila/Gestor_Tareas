@@ -37,7 +37,7 @@ describe("Lista de Tareas con categoría", ()=>{
         listaTareas1.agregarTarea("tarea2","","Trabajo");
         listaTareas1.agregarTarea("tarea3","","Estudio");
         var tareas = listaTareas1.filtrarCategorias("Sin categoria");
-        expect(tareas).toEqual([]);
+        expect(tareas).toEqual([])
     });
     it("filtrar en lista segun las categorias", () => {
         var listaTareas1 = new ListaTareas();
