@@ -8,11 +8,12 @@ class Tarea{
         return descripcion
     }
     
-    constructor(titulo,descripcion="",id) {
+    constructor(titulo,descripcion="",id,categoria,fechaLimite=null) {
 
         this.titulo = titulo;
         this.descripcion = this.controlCantidadPalabras(descripcion);
-        this.id = id;
+        this.id = id;  
+        this.setFechaLimite(fechaLimite);
     }
 
     getId(){
@@ -25,6 +26,18 @@ class Tarea{
 
     getDescripcion(){
         return this.descripcion;
+    }
+
+    getFechaLimite(){
+        return this.fechaLimite;
+    }
+
+    setFechaLimite(fechaLimite){
+        if(fechaLimite==null){
+            this.fechaLimite = null;
+        }else{
+            this.fechaLimite = new Date(fechaLimite);
+        }   
     }
 
     

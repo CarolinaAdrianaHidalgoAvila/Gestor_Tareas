@@ -4,10 +4,10 @@ class ListaTareas{
         this.ListaTareas = [];
     }
 
-    agregarTarea(titulo,descripcion){
+    agregarTarea(titulo,descripcion,categoria,fechaLimite){
         if(titulo!=""){
             var id = this.ListaTareas.length+1;
-            var tarea = new Tarea(titulo,descripcion,"tarea-"+id);
+            var tarea = new Tarea(titulo,descripcion,"tarea-"+id,categoria,fechaLimite);
             this.ListaTareas.push(tarea);
         }      
     }
@@ -63,7 +63,9 @@ class ListaTareas{
         return descripcion
     }
 
-    
+    getFechaLimiteTareas(){       
+        return this.ListaTareas.map(tarea=>tarea.getFechaLimite());
+    }
 
     
 }
