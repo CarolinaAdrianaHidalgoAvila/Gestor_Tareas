@@ -149,14 +149,7 @@ describe("Añadir Descripcion a Tarea", () => {
         var tarea = listaTareas.getTareaPorId("tarea-1") 
         expect(  tarea.getDescripcion().split(" ").length   ).toEqual(60);
     });
-    it("o se deberia permitir descripciones con más de 60 palabras", () => {
-        var listaTareas = new ListaTareas();      
-        listaTareas.agregarTarea("tarea de fisica","Volver a copiar el formulario, repasar apuntes de la anterior clase, rehacer los ejercicios que se hicieron en la exposición Volver a copiar el formulario, repasar apuntes de la anterior clase, rehacer los ejercicios que se hicieron en la exposición Volver a copiar el formulario, repasar apuntes de la anterior clase, rehacer los ejercicios que se hicieron en la exposición Volver a copiar el formulario, repasar apuntes de la anterior clase, rehacer los ejercicios que se hicieron en la exposición Volver a copiar el formulario, repasar apuntes de la anterior clase, rehacer los ejercicios que se hicieron en la exposición ")
-        listaTareas.agregarTarea("lavar platos","")
-        listaTareas.agregarTarea("tarea de quimica","Tareas relacionadas con propiedades de las sustancias químicas: identificación de sustancias, purificación de sustancias, obtención de sustancias, determinación de magnitudes físicas, determinación de fórmulas empíricas y moleculares.-- Tareas relacionadas con propiedades de las sustancias químicas: identificación de sustancias, purificación de sustancias, obtención de sustancias, determinación de magnitudes físicas, determinación de fórmulas empíricas y moleculares. -- Tareas relacionadas con propiedades de las sustancias químicas: identificación de sustancias, purificación de sustancias, obtención de sustancias, determinación de magnitudes físicas, determinación de fórmulas empíricas y moleculares")
-        listaTareas.agregarTarea("cumpleaños hermana"," comprar el peluche de gato o un kit de maquillaje")
-        var tarea = listaTareas.getTareaPorId("tarea-3") 
-        expect(  tarea.getDescripcion().split(" ").length   ).toEqual(60);
-    });
+
+
 });
 

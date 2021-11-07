@@ -26,15 +26,7 @@ class ListaTareas{
         return tareaCompleta;  
     }
 
-    getTareaConDescripcion(tarea){        
-        let titulo = tarea.getTitulo();
-        let descripcion = tarea.getDescripcion(); 
-        let tareaCompleta = titulo;
-        if(descripcion!=""){
-            tareaCompleta = titulo + '&nbsp&nbsp<button class="button-descripcion" id="'+tarea.getId()+'" type="button">Descripcion</button>';          
-        }     
-        return tareaCompleta;  
-    }
+    
 
     getUlListaTareas(){
         let tareasLi = this.ListaTareas.map(tarea=>"<li>"+this.getTareaConDescripcion(tarea)+"</li>");
@@ -56,6 +48,10 @@ class ListaTareas{
 
     getCantidadTareasConDescripcion(){
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").length;
+    }
+
+    filtrarPorDescripcion(textoDeFiltro){
+        return this.ListaTareas.filter(tarea=>tarea.getDescripcion().toLowerCase().includes(textoDeFiltro.toLowerCase())).map(tarea=>tarea.getId());
     }
 }
 
