@@ -72,4 +72,17 @@ describe("Filtrar tarea por descripción", () => {
         listaTareas.agregarTarea("cumpleaños hermana","Ayer mama dijo, comprar manilla rosada de la revista tone")   
         expect(  listaTareas.filtrarPorDescripcion("COMPRAR")).toEqual(["tarea-2","tarea-3","tarea-4"]);
     });
+    // CC2
+    it("Deberia devolver lista vacia si no existe tarea con descripción dado en el filtro", () => {
+        var listaTareas = new ListaTareas();
+        listaTareas.agregarTarea("cumpleaños amiga","Comprar el peluche de gato o un kit de maquillaje")
+        listaTareas.agregarTarea("cumpleaños hermana","")
+        listaTareas.agregarTarea("tarea fisica","Faltan utencilios, de debe comprar más ")    
+        expect(  listaTareas.filtrarPorDescripcion("helado")).toEqual([]);
+    });
+    it("Deberia devolver lista vacia si no existe tarea con descripción dado en el filtro", () => {
+        var listaTareas = new ListaTareas();
+        expect(  listaTareas.filtrarPorDescripcion("helado")).toEqual([]);
+    });
+
 });
