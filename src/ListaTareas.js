@@ -117,6 +117,13 @@ class ListaTareas{
     filtrarPorUnaFecha(fecha){
         return this.ListaTareas.filter(tarea=>tarea.compararFecha(fecha) == true ).map(tarea=>tarea.getId() );
     }
+    filtrarPorUnRangoFechas(fechaInicial,fechaFinal){
+        let fechaInicial_formato = new Date(fechaInicial);
+        let fechaFinal_formato = new Date(fechaFinal);
+        fechaInicial_formato.setHours(0,0,0);
+        fechaFinal_formato.setHours(23,59,59);
+        return this.ListaTareas.filter(tarea=>tarea.getFechaLimite() >= fechaInicial_formato && tarea.getFechaLimite() <= fechaFinal_formato ).map(tarea=>tarea.getId() );
+    }
 }
 
 export default ListaTareas;
