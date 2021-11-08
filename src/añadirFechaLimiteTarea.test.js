@@ -26,8 +26,8 @@ describe("Añadir Fecha Límite a Tarea", () => {
     }); 
     it("deberia agregar tareas con fecha limite a la lista", () => {     
         var listaTareas = new ListaTareas(); 
-        listaTareas.agregarTarea("ir a piscina","nadar 50 minutos","2022-08-07T23:29");
-        listaTareas.agregarTarea("ir a correr","correr 50 minutos","2022-08-07T23:29");
+        listaTareas.agregarTarea("ir a piscina","nadar 50 minutos","","2022-08-07T23:29");
+        listaTareas.agregarTarea("ir a correr","correr 50 minutos","","2022-08-07T23:29");
         expect(listaTareas.getCantidadTareas()).toEqual(2);
     }); 
     it("deberia agregar tareas con y sin fecha limite a la lista", () => {     

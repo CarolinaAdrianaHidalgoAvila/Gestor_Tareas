@@ -45,7 +45,10 @@ class Tarea{
         return this.fechaLimite < new Date();
     }
 
-    
+    compararFecha(fecha){
+        let fecha_formato = new Date(fecha)
+        return this.fechaLimite.getDate() == fecha_formato.getDate() && this.fechaLimite.getMonth() == fecha_formato.getMonth() && this.fechaLimite.getFullYear() == fecha_formato.getFullYear();
+    }
 
 }
 export default Tarea;

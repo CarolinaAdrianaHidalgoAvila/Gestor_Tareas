@@ -27,13 +27,17 @@ class ListaTareas{
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").map(tarea=>tarea.getDescripcion());
     }
 
+    
     getTareaConDescripcion(tarea){        
         let titulo = tarea.getTitulo();
         let descripcion = tarea.getDescripcion(); 
         let tareaCompleta = titulo;
+        
+        /*
         if(descripcion!=""){
-            tareaCompleta = titulo + '&nbsp&nbsp<button class="button-descripcion" id="'+tarea.getId()+'" type="button">Descripcion</button>';          
-        }     
+            //tareaCompleta = titulo + '&nbsp&nbsp<button class="button-descripcion" id="'+tarea.getId()+'" type="button">Descripcion</button>';          
+        } 
+        */ 
         return tareaCompleta;  
     }
 
@@ -107,7 +111,12 @@ class ListaTareas{
         console.log(categorias);
         return categorias;
     }
+
+
     
+    filtrarPorUnaFecha(fecha){
+        return this.ListaTareas.filter(tarea=>tarea.compararFecha(fecha) == true ).map(tarea=>tarea.getId() );
+    }
 }
 
 export default ListaTareas;
