@@ -27,26 +27,26 @@ class ListaTareas{
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").map(tarea=>tarea.getDescripcion());
     }
 
-    
+    /*
     getTareaConDescripcion(tarea){        
         let titulo = tarea.getTitulo();
         let descripcion = tarea.getDescripcion(); 
         let tareaCompleta = titulo;
         
-        /*
+        
         if(descripcion!=""){
             //tareaCompleta = titulo + '&nbsp&nbsp<button class="button-descripcion" id="'+tarea.getId()+'" type="button">Descripcion</button>';          
         } 
-        */ 
+        *
         return tareaCompleta;  
     }
-
+*/
     
 
-    getUlListaTareas(){
+   /* getUlListaTareas(){
         let tareasLi = this.ListaTareas.map(tarea=>"<li>"+this.getTareaConDescripcion(tarea)+"</li>");
         return "<ul>"+tareasLi.join("")+"</ul>";
-    }
+    }*/
 
     getTareaPorId(idTarea){
         var tarea = this.ListaTareas.find(tarea => tarea.getId()==idTarea); 
@@ -123,6 +123,16 @@ class ListaTareas{
         fechaInicial_formato.setHours(0,0,0);
         fechaFinal_formato.setHours(23,59,59);
         return this.ListaTareas.filter(tarea=>tarea.getFechaLimite() >= fechaInicial_formato && tarea.getFechaLimite() <= fechaFinal_formato ).map(tarea=>tarea.getId() );
+    }
+
+    agregarBotonDescripcionSiTiene(tarea){
+        if(tarea.getDescripcion()=="") return "";
+        return '</span><button class="btn-descripcion" id="'+tarea.getId()+'">Descripcion</button>';
+    }
+
+    getListaTareasHtml(){        
+        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+this.agregarBotonDescripcionSiTiene(tarea)+'</li>');
+        return "<ul>"+tareasLi.join("")+"</ul>";       
     }
 }
 

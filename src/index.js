@@ -4,64 +4,44 @@ let listaTareasAgregadas = new ListaTareas();
 
 const tarea = document.querySelector("#tarea");
 const listaTareas = document.querySelector("#lista-tareas");
-const listaTareasFiltradas = document.querySelector("#lista-tareasFiltradas");
 const form = document.querySelector("#agregarTareas-form");
-const boton_elem = document.querySelector("#crear-tarea");
+const descripcion = document.querySelector("#descripcion");
+const dialogo = document.querySelector("#dialogo-descripcion");
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault()
-  if(listaTareas.innerHTML==""){
-    listaTareasAgregadas = new ListaTareas();
-  }
-  let tituloTarea = tarea.value;
-  listaTareasAgregadas.agregarTarea(tituloTarea);
-  listaTareas.innerHTML = listaTareasAgregadas.getUlListaTareas();
-});
-/*form.addEventListener("button", (event) => {
-  event.preventDefault()
-   let  tituloBuscado = tarea.value;
-  let tarea =listaTareasAgregadas.filtrarTitulo(tituloBuscado);
-  listaTareasFiltradas.innerHTML = tarea.value;
-});
-
-<<<<<<< HEAD
-=======
-import Tarea from "./Tarea.js";
-let listaTareasAgregadas = new ListaTareas();
-
-const tarea = document.querySelector("#tarea");
-const listaTareas = document.querySelector("#lista-tareas");
-const form = document.querySelector("#agregarTareas-form");
-
-const descripcion = document.querySelector("#descripcionTarea");
-const dialogoDescripcion = document.querySelector("#dialogo-descripcion");
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault()
-  if(listaTareas.innerHTML==""){
-    listaTareasAgregadas = new ListaTareas();
-  }
-  let tituloTarea = tarea.value;
-  let desripcionTarea = descripcion.value;
-  listaTareasAgregadas.agregarTarea(tituloTarea,desripcionTarea);
-  listaTareas.innerHTML = listaTareasAgregadas.getUlListaTareas();
-
-  const b = document.querySelectorAll(".button-descripcion"); 
-  b.forEach(btn => { 
-    btn.addEventListener("click", mostrarDescripcion(btn.id), false);
+function click(){  
+  listaTareas.childNodes.forEach((elemento)=>{
+    elemento.addEventListener("click", (e)=>{
+      const idTarea = e.target.id;
+      const descripcionTarea = listaTareasAgregadas.getTareaPorId(idTarea).getDescripcion();
+      console.log("id=",idTarea,"descripcionTarea=",descripcionTarea);
+      dialogo.textContent = descripcionTarea;
+      const botonCerrar = document.createElement('button');
+      botonCerrar.id = "close";
+      botonCerrar.type = 'button';          
+      botonCerrar.setAttribute('onclick','document.getElementById("dialogo-descripcion").close()')   
+      botonCerrar.innerText = 'Ok!'; 
+      dialogo.appendChild(botonCerrar);
+      
+      if(descripcionTarea!=""){
+        dialogo.show();
+      }
+    });
   });
-});
-
-function mostrarDescripcion(idTarea){
-
-  const dialogoDescripcion = document.querySelector("#dialogo-descripcion");
-  const tarea = listaTareasAgregadas.getTareaPorId(idTarea);
-
-  dialogoDescripcion.innerHTML = tarea.getDescripcion();
-  //dialogoDescripcion.showModal();
 }
 
-export default mostrarDescripcion;
->>>>>>> 056bc7a0a6f64998653bb9c1fbdb346bb63b8152
-=======
-*/
+form.addEventListener("submit", (event) => {
+  event.preventDefault(); 
+  if(listaTareas.innerHTML==""){
+    listaTareasAgregadas = new ListaTareas();
+  }
+  let tituloTarea = tarea.value;
+  let descripcionTarea = descripcion.value;
+  listaTareasAgregadas.agregarTarea(tituloTarea,descripcionTarea);
+  listaTareas.innerHTML = listaTareasAgregadas.getListaTareasHtml();
+  if(tarea.value==""){
+    alert("No se puede agregar tarea vacia");
+  }
+  click();
+  tarea.value="";
+  descripcion.value="";
+});
