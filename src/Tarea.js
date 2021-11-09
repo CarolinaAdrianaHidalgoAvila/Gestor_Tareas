@@ -34,7 +34,7 @@ class Tarea{
     }
 
     setFechaLimite(fechaLimite){
-        if(fechaLimite==null){
+        if(fechaLimite==null|| fechaLimite==""){
             this.fechaLimite = null;
         }else{
             this.fechaLimite = new Date(fechaLimite);
@@ -48,6 +48,10 @@ class Tarea{
     compararFecha(fecha){
         let fecha_formato = new Date(fecha)
         return this.fechaLimite.getDate() == fecha_formato.getDate() && this.fechaLimite.getMonth() == fecha_formato.getMonth() && this.fechaLimite.getFullYear() == fecha_formato.getFullYear();
+    }
+
+    esFechaLimiteNulo(){
+        return this.fechaLimite==null || this.fechaLimite=="";
     }
 
 }

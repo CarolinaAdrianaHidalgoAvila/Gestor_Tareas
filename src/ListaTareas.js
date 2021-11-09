@@ -130,8 +130,15 @@ class ListaTareas{
         return '</span><button class="btn-descripcion" id="'+tarea.getId()+'">Descripcion</button>';
     }
 
+    getFechaLimiteValida(tarea){
+        if(tarea.esFechaLimiteNulo()){
+            return "";
+        }
+        return tarea.getFechaLimite().toLocaleString();
+    }
+
     getListaTareasHtml(){        
-        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+'['+tarea.getCategoria()+']'+this.agregarBotonDescripcionSiTiene(tarea)+'</li>');
+        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+'['+tarea.getCategoria()+']'+'<span class="fecha-limite">'+this.getFechaLimiteValida(tarea)+this.agregarBotonDescripcionSiTiene(tarea)+'</li>');
         return "<ul>"+tareasLi.join("")+"</ul>";       
     }
 }

@@ -8,6 +8,21 @@ const form = document.querySelector("#agregarTareas-form");
 const descripcion = document.querySelector("#descripcion");
 const dialogo = document.querySelector("#dialogo-descripcion");
 const categoria = document.querySelector("#selector-categoria");
+const fechaLimite = document.querySelector("#selector-fecha-limite");
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd+"T00:00";
+document.getElementById("selector-fecha-limite").setAttribute("min", today);
 
 function click(){  
   listaTareas.childNodes.forEach((elemento)=>{
@@ -38,8 +53,9 @@ form.addEventListener("submit", (event) => {
   let tituloTarea = tarea.value;
   let descripcionTarea = descripcion.value;
   let categoriaTarea = categoria.value;
+  let fechaLimiteTarea = fechaLimite.value;  
 
-  listaTareasAgregadas.agregarTarea(tituloTarea,descripcionTarea,categoriaTarea);
+  listaTareasAgregadas.agregarTarea(tituloTarea,descripcionTarea,categoriaTarea,fechaLimiteTarea);
   listaTareas.innerHTML = listaTareasAgregadas.getListaTareasHtml();
   if(tarea.value==""){
     alert("No se puede agregar tarea vacia");
@@ -47,4 +63,6 @@ form.addEventListener("submit", (event) => {
   click();
   tarea.value="";
   descripcion.value="";
+  categoria.value="Sin categoria";
+  fechaLimite.value="";
 });

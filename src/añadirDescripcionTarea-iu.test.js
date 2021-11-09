@@ -12,7 +12,7 @@ describe("Añadir Descripcion Tarea", () => {
     const form = document.querySelector("#agregarTareas-form");
     tarea_elem.value = "Primera tarea";   
     form.submit();   
-    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]</li></ul>");
+    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"fecha-limite\"></span></li></ul>");
   });
 
   it("deberia mostrar la tarea creada con boton de descripcion si tiene descripcion", () => {
@@ -23,7 +23,7 @@ describe("Añadir Descripcion Tarea", () => {
     tarea_elem.value = "Primera tarea";   
     descripcion.value = "tarea de fisica";
     form.submit();   
-    expect(lista_elem.innerHTML).toEqual('<ul><li>Primera tarea[Sin categoria]<button class="btn-descripcion" id="tarea-1">Descripcion</button></li></ul>');
+    expect(lista_elem.innerHTML).toEqual('<ul><li>Primera tarea[Sin categoria]<span class=\"fecha-limite\"></span><button class="btn-descripcion" id="tarea-1">Descripcion</button></li></ul>');
   });
 
   /*
