@@ -12,6 +12,9 @@ const fechaLimite = document.querySelector("#selector-fecha-limite");
 const botonBuscar = document.querySelector("#boton-buscar");
 const textoFiltro = document.querySelector("#filtro-text");
 const categoriaFiltro= document.querySelector("#selector-categoria-busqueda");
+const fechaInicioFiltro =  document.querySelector("#selector-fecha-limite-inicial");
+const fechaFinFiltro = document.querySelector("#selector-fecha-limite-final");
+const fechaFiltro = document.querySelector("#boton-filtrar-fecha");
 
 var today = new Date();
 var dd = today.getDate();
@@ -26,6 +29,19 @@ var yyyy = today.getFullYear();
 
 today = yyyy+'-'+mm+'-'+dd+"T00:00";
 document.getElementById("selector-fecha-limite").setAttribute("min", today);
+
+fechaFiltro.addEventListener("click", (e)=>{
+  if(new Date(fechaInicioFiltro.value)>new Date(fechaFinFiltro.value)){
+    alert("Fecha incorrecta: fecha DESDE debe ser menor a fecha HASTA");
+  }
+  else{
+    var listaTareasIds = listaTareasAgregadas.filtrarPorUnRangoFechas(fechaInicioFiltro.value+'T00:00',fechaFinFiltro.value+'T23:59');
+    var listaTareasFiltradas = listaTareasAgregadas.getListaPorIds(listaTareasIds);
+    if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
+    listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
+    click();
+  }
+});
 
 categoriaFiltro.addEventListener('change',
   function(){

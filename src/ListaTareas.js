@@ -27,27 +27,6 @@ class ListaTareas{
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").map(tarea=>tarea.getDescripcion());
     }
 
-    /*
-    getTareaConDescripcion(tarea){        
-        let titulo = tarea.getTitulo();
-        let descripcion = tarea.getDescripcion(); 
-        let tareaCompleta = titulo;
-        
-        
-        if(descripcion!=""){
-            //tareaCompleta = titulo + '&nbsp&nbsp<button class="button-descripcion" id="'+tarea.getId()+'" type="button">Descripcion</button>';          
-        } 
-        *
-        return tareaCompleta;  
-    }
-*/
-    
-
-   /* getUlListaTareas(){
-        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+this.getTareaConDescripcion(tarea)+"</li>");
-        return "<ul>"+tareasLi.join("")+"</ul>";
-    }*/
-
     getTareaPorId(idTarea){
         var tarea = this.ListaTareas.find(tarea => tarea.getId()==idTarea); 
         if (tarea == undefined ){
@@ -106,8 +85,6 @@ class ListaTareas{
 
     filtrarCategorias(categoria){
         let categorias=[]
-        //let categorias=  this.ListaTareas.map(word => word.getCategoria() === categoria).getListaTitulosTareas()
-       // categorias=categorias.map(tarea => tarea.getTitulo())
          this.ListaTareas.forEach(element => {
             if(element.getCategoria()==categoria){
                 categorias.push(element.getTitulo())

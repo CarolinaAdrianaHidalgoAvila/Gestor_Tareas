@@ -19,6 +19,7 @@
       <input type="submit" value="Crear Tarea"/>       
     </form>
     <hr>
+    
     <input  maxlength="30" type="text" id="filtro-text" />
     <button id="boton-buscar">Buscar</button>
     <select id="selector-categoria-busqueda">
@@ -27,7 +28,12 @@
       <option value="Trabajo">Trabajo</option>
       <option value="Estudio">Estudio</option>         
     </select>
-    
+    <label for="selector-fecha-limite-inicial">Desde</label>
+    <input min="min='1999-01-01T00:00'" type="date" id="selector-fecha-limite-inicial">
+    <label for="selector-fecha-limite-final">Hasta</label>
+    <input min="min='1999-01-01T00:00'" type="date" id="selector-fecha-limite-final">
+    <button id="boton-filtrar-fecha">Filtrar por fecha</button>
+
     <h4>Tareas</h4>
     <div><ul id="lista-tareas"></ul></div>
     <dialog id="dialogo-descripcion"></dialog>
