@@ -9,6 +9,8 @@ const descripcion = document.querySelector("#descripcion");
 const dialogo = document.querySelector("#dialogo-descripcion");
 const categoria = document.querySelector("#selector-categoria");
 const fechaLimite = document.querySelector("#selector-fecha-limite");
+const botonBuscar = document.querySelector("#boton-buscar");
+const textoFiltro = document.querySelector("#filtro-text");
 
 var today = new Date();
 var dd = today.getDate();
@@ -23,6 +25,25 @@ var yyyy = today.getFullYear();
 
 today = yyyy+'-'+mm+'-'+dd+"T00:00";
 document.getElementById("selector-fecha-limite").setAttribute("min", today);
+
+botonBuscar.addEventListener("click", (e)=>{
+  if(textoFiltro.value==""){
+    listaTareas.innerHTML = listaTareasAgregadas.getListaTareasHtml();
+  }
+  else{
+    var listaTareasTitulo = listaTareasAgregadas.filtrarTitulo(textoFiltro.value);
+    var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasTitulo);
+    console.log("lista",listaTareasFiltradas)
+    if(listaTareasFiltradas.getCantidadTareas()==0){
+      var listaTareasIds = listaTareasAgregadas.filtrarPorDescripcion(textoFiltro.value);
+      console.log(listaTareasIds)
+      listaTareasFiltradas = listaTareasAgregadas.getListaPorIds(listaTareasIds);
+      if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
+    }
+    listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
+  }  
+  click();
+});
 
 function click(){  
   listaTareas.childNodes.forEach((elemento)=>{

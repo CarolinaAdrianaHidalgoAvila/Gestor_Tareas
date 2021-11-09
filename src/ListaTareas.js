@@ -141,6 +141,32 @@ class ListaTareas{
         let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+'['+tarea.getCategoria()+']'+'<span class="fecha-limite">'+this.getFechaLimiteValida(tarea)+this.agregarBotonDescripcionSiTiene(tarea)+'</li>');
         return "<ul>"+tareasLi.join("")+"</ul>";       
     }
+
+    getListaDesdeJson(listaJson){
+        if(listaJson.length==0 || listaJson=="No existe"){            
+            return new ListaTareas();  
+        }
+        let listaNueva = new ListaTareas();        
+        listaJson.forEach((elementoLista)=>{            
+            let tarea = new Tarea(elementoLista["titulo"],elementoLista["descripcion"],elementoLista["id"],elementoLista["categoria"],elementoLista["fechaLimite"]);
+            console.log("TAREA",tarea)
+            listaNueva.agregarTareaConId(tarea);
+        })
+        return listaNueva;
+    }
+
+    agregarTareaConId(tarea){
+        this.ListaTareas.push(tarea);
+    }
+
+    getListaPorIds(listaIds){
+        let listaNueva = new ListaTareas();                
+        listaIds.forEach((idTarea)=>{            
+            let tarea = this.getTareaPorId(idTarea);
+            listaNueva.agregarTareaConId(tarea);
+        })
+        return listaNueva;
+    }
 }
 
 export default ListaTareas;
