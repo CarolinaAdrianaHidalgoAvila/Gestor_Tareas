@@ -99,6 +99,11 @@ class ListaTareas{
     esTareaConFechaPasada(tarea){
         return tarea.esTareaConFechaPasada();
     }
+
+    filtrarCategoriasLista(categoria){
+        return this.ListaTareas.filter(element => element.getCategoria() === categoria);
+    }
+
     filtrarCategorias(categoria){
         let categorias=[]
         //let categorias=  this.ListaTareas.map(word => word.getCategoria() === categoria).getListaTitulosTareas()
@@ -111,7 +116,6 @@ class ListaTareas{
         console.log(categorias);
         return categorias;
     }
-
 
     
     filtrarPorUnaFecha(fecha){
@@ -147,7 +151,8 @@ class ListaTareas{
             return new ListaTareas();  
         }
         let listaNueva = new ListaTareas();        
-        listaJson.forEach((elementoLista)=>{            
+        listaJson.forEach((elementoLista)=>{ 
+            console.log("JSON LISTATAREAS", elementoLista)           
             let tarea = new Tarea(elementoLista["titulo"],elementoLista["descripcion"],elementoLista["id"],elementoLista["categoria"],elementoLista["fechaLimite"]);
             console.log("TAREA",tarea)
             listaNueva.agregarTareaConId(tarea);

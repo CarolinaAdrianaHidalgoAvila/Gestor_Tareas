@@ -11,6 +11,7 @@ const categoria = document.querySelector("#selector-categoria");
 const fechaLimite = document.querySelector("#selector-fecha-limite");
 const botonBuscar = document.querySelector("#boton-buscar");
 const textoFiltro = document.querySelector("#filtro-text");
+const categoriaFiltro= document.querySelector("#selector-categoria-busqueda");
 
 var today = new Date();
 var dd = today.getDate();
@@ -25,6 +26,17 @@ var yyyy = today.getFullYear();
 
 today = yyyy+'-'+mm+'-'+dd+"T00:00";
 document.getElementById("selector-fecha-limite").setAttribute("min", today);
+
+categoriaFiltro.addEventListener('change',
+  function(){
+    var categoriaSeleccionada = this.options[categoriaFiltro.selectedIndex];
+    var listaTareasCategorias = listaTareasAgregadas.filtrarCategoriasLista(categoriaSeleccionada.value);
+    console.log("lista tareas Cat",listaTareasCategorias)
+    var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasCategorias);
+    console.log("lista desde JSON",listaTareasFiltradas)
+    listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();    
+    click();
+  });
 
 botonBuscar.addEventListener("click", (e)=>{
   if(textoFiltro.value==""){
