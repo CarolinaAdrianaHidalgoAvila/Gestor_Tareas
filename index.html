@@ -5,9 +5,16 @@
     <h2>Ingrese una Tarea en el recuadro</h2>
     <form id="agregarTareas-form">
       <label for="tarea">Titulo</label>
-      <input type="text" id="tarea"> <br><br>
+      <input maxlength="30" type="text" id="tarea"> <br><br>
       <label for="descripcion">Descripcion</label>
       <input type="text" id ="descripcion"><br><br>
+      <label for="categoria">Categoria</label>
+      <select id="selector-categoria">
+        <option value="Sin categoria">Sin categoria</option>
+        <option value="Personal">Personal</option>
+        <option value="Trabajo">Trabajo</option>
+        <option value="Estudio">Estudio</option>
+      </select>
       <input type="submit" value="Crear Tarea"/>       
     </form>
     <hr>

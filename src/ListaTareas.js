@@ -131,7 +131,7 @@ class ListaTareas{
     }
 
     getListaTareasHtml(){        
-        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+this.agregarBotonDescripcionSiTiene(tarea)+'</li>');
+        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+'['+tarea.getCategoria()+']'+this.agregarBotonDescripcionSiTiene(tarea)+'</li>');
         return "<ul>"+tareasLi.join("")+"</ul>";       
     }
 }

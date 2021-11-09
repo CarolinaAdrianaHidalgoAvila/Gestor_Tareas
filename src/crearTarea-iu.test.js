@@ -6,7 +6,6 @@ describe("Crear Tarea", () => {
     require("./index.js");
   });
 
-  //CC1
   it("Al iniciar no hay nada en la lista de tareas", () => {
     const lista_elem = document.querySelector("#lista-tareas");
     expect(lista_elem.innerHTML).toEqual("");
@@ -18,7 +17,7 @@ describe("Crear Tarea", () => {
     const form = document.querySelector("#agregarTareas-form");
     tarea_elem.value = "Primera tarea";   
     form.submit();   
-    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea</li></ul>");
+    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]</li></ul>");
   });
 
   it("deberia mostrar la tarea creada", () => {
@@ -27,17 +26,20 @@ describe("Crear Tarea", () => {
     const form = document.querySelector("#agregarTareas-form");
     tarea_elem.value = "Segunda tarea";   
     form.submit();   
-    expect(lista_elem.innerHTML).toEqual("<ul><li>Segunda tarea</li></ul>");
+    expect(lista_elem.innerHTML).toEqual("<ul><li>Segunda tarea[Sin categoria]</li></ul>");
   });
 
   it("deberia mostrar la tarea creada", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
     const form = document.querySelector("#agregarTareas-form");
-    tarea_elem.value = "Segunda tarea";   
+    const categoria = document.querySelector("#selector-categoria");
+    tarea_elem.value = "Segunda tarea";  
+    categoria.value="Personal";
     form.submit();   
-    expect(lista_elem.innerHTML).toEqual("<ul><li>Segunda tarea</li></ul>");
+    expect(lista_elem.innerHTML).toEqual("<ul><li>Segunda tarea[Personal]</li></ul>");
   });
+
 
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    

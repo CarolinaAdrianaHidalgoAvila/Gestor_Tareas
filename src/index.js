@@ -7,6 +7,7 @@ const listaTareas = document.querySelector("#lista-tareas");
 const form = document.querySelector("#agregarTareas-form");
 const descripcion = document.querySelector("#descripcion");
 const dialogo = document.querySelector("#dialogo-descripcion");
+const categoria = document.querySelector("#selector-categoria");
 
 function click(){  
   listaTareas.childNodes.forEach((elemento)=>{
@@ -36,7 +37,9 @@ form.addEventListener("submit", (event) => {
   }
   let tituloTarea = tarea.value;
   let descripcionTarea = descripcion.value;
-  listaTareasAgregadas.agregarTarea(tituloTarea,descripcionTarea);
+  let categoriaTarea = categoria.value;
+
+  listaTareasAgregadas.agregarTarea(tituloTarea,descripcionTarea,categoriaTarea);
   listaTareas.innerHTML = listaTareasAgregadas.getListaTareasHtml();
   if(tarea.value==""){
     alert("No se puede agregar tarea vacia");
