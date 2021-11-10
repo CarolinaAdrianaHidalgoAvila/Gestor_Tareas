@@ -1,29 +1,111 @@
 <html>
-  
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+      body{
+        font-family: 'Patrick Hand', cursive;
+
+        background: rgb(238,174,202);
+        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+      }
+      h1{
+        font-size:50px;
+        text-align: center;
+        color:rgba(8, 156, 156, 0.534);
+      }
+      h2{
+        font-size:30px;
+        text-align: left;
+        color:hsl(0, 0%, 100%);
+      }
+      .content{
+        padding-left:10%;
+        font-size:30px;
+        color:blueviolet;
+      }
+      .search{
+        padding-left:10% ;
+        color:blueviolet;
+        font-size:25px;
+      }
+      hr{
+        width: 75%;
+      }
+      #selector-fecha-limite-inicial, #selector-fecha-limite-final, #selector-fecha-limite{
+        font-family: 'Patrick Hand', cursive;
+        border-radius: 10%;
+        width:12%;
+        height: 30px;
+      }
+      button, .button, select{
+        font-family: 'Patrick Hand', cursive;
+        border-radius: 10%;
+        font-size: 15px;
+        width:12%;
+        height: 30px;
+      }
+      #tarea, #descripcion, #selector-categoria, #filtro-text{
+        height: 30px;
+      }
+      
+      .button{
+        background-color: #4158D0;
+        background: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+        color:hsl(0, 0%, 100%);
+        font-size: 25px;
+        width:20%;
+        height: 40px;
+
+      }
+      #boton-buscar, #boton-filtrar-fecha,.btn-descripcion {
+        background: rgb(177,253,255);
+        background: radial-gradient(circle, rgba(177,253,255,1) 0%, rgba(255,193,206,1) 100%);
+      }
+      dialog{
+        border:10px;
+        box-sizing:auto ;
+        width:50%;
+      }
+      .btn-descripcion{
+       border-left:10px;
+       
+      }
+      .close{
+        left: 50%;
+      }
+    </style>
+  </head>
   <body>
-    <h1>Bienvenido al gestor de tareas</h1>
-    <h2>Ingrese una Tarea en el recuadro</h2>
+    <h1>BIENVENIDO A SU GESTOR DE TAREAS</h1>
+    <div class="content">
+      <h2>Ingrese la informacion de su tarea</h2>
     <form id="agregarTareas-form">
-      <label for="tarea">Titulo</label>
+      <label for="tarea">Título</label>
       <input maxlength="30" type="text" id="tarea"> <br><br>
-      <label for="descripcion">Descripcion</label>
+      <label for="descripcion">Descripción</label>
       <input type="text" id ="descripcion"><br><br>
-      <label for="categoria">Categoria</label>
+      <label for="categoria">Categoría</label>
       <select id="selector-categoria">
-        <option value="Sin categoria">Sin categoria</option>
+        <option value="Sin categoria">Sin categoría</option>
         <option value="Personal">Personal</option>
         <option value="Trabajo">Trabajo</option>
         <option value="Estudio">Estudio</option>
-      </select>
-      <input min="min='1999-01-01T00:00'" type="datetime-local" id="selector-fecha-limite">
-      <input type="submit" value="Crear Tarea"/>       
+      </select><br><br>
+      <label for="descripcion">Fecha Limite</label>
+      <input min="min='1999-01-01T00:00'" type="datetime-local" id="selector-fecha-limite"><br><br>
+      <input type="submit" value="Crear Tarea" class="button"/>       
     </form>
-    <hr>
+    </div>
     
-    <input  maxlength="30" type="text" id="filtro-text" />
+    <hr>
+    <div class ="search">
+      <h2>Parámetros para buscar su tarea</h2>
+      <input  maxlength="30" type="text" id="filtro-text" />
     <button id="boton-buscar">Buscar</button>
     <select id="selector-categoria-busqueda">
-      <option value="Sin categoria">Sin categoria</option>
+      <option value="Sin categoria">Sin categoría</option>
       <option value="Personal">Personal</option>
       <option value="Trabajo">Trabajo</option>
       <option value="Estudio">Estudio</option>         
@@ -36,9 +118,9 @@
 
     <h4>Tareas</h4>
     <div><ul id="lista-tareas"></ul></div>
-    <dialog id="dialogo-descripcion"></dialog>
+    <dialog  id="dialogo-descripcion"></dialog>
     <script type="module" src="./src/index.js"></script>
-
+    </div>
   </body>
 </html>
 
