@@ -1,5 +1,4 @@
-import ListaTareas from "./ListaTareas.js";
-//import Tarea from  "./Tarea.js"
+import ListaTareas from "../../LogicaNegocio/ListaTareas.js";
  
 describe("Lista de Tareas", () => {
     it("clase lista tareas", () => {

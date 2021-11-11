@@ -1,5 +1,4 @@
-import ListaTareas from "./ListaTareas.js";
-import Tarea from  "./Tarea.js"
+import ListaTareas from "../../LogicaNegocio/ListaTareas.js";
  
 describe("Filtrar tarea por descripción", () => {
     //CC1

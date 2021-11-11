@@ -80,7 +80,7 @@
   <body>
     <h1>BIENVENIDO A SU GESTOR DE TAREAS</h1>
     <div class="content">
-      <h2>Ingrese la informacion de su tarea</h2>
+      <h2>Ingrese la información de su tarea</h2>
     <form id="agregarTareas-form">
       <label for="tarea">Título</label>
       <input maxlength="30" type="text" id="tarea"> <br><br>
@@ -93,7 +93,7 @@
         <option value="Trabajo">Trabajo</option>
         <option value="Estudio">Estudio</option>
       </select><br><br>
-      <label for="descripcion">Fecha Limite</label>
+      <label for="descripcion">Fecha Límite</label>
       <input min="min='1999-01-01T00:00'" type="datetime-local" id="selector-fecha-limite"><br><br>
       <input type="submit" value="Crear Tarea" class="button"/>       
     </form>
@@ -119,7 +119,8 @@
     <h4>Tareas</h4>
     <div><ul id="lista-tareas"></ul></div>
     <dialog  id="dialogo-descripcion"></dialog>
-    <script type="module" src="./src/index.js"></script>
+    <script type="module" src="./src/LogicaInterfaz/index.js"></script>
+    <script type="module" src="./src/LogicaInterfaz/filtros.js"></script>
     </div>
   </body>
 </html>

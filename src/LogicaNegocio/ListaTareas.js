@@ -1,4 +1,4 @@
-import Tarea from "./Tarea.js"
+import Tarea from "../LogicaNegocio/Tarea.js"
 class ListaTareas{
     constructor() {
         this.ListaTareas = [];
@@ -128,10 +128,8 @@ class ListaTareas{
             return new ListaTareas();  
         }
         let listaNueva = new ListaTareas();        
-        listaJson.forEach((elementoLista)=>{ 
-            console.log("JSON LISTATAREAS", elementoLista)           
-            let tarea = new Tarea(elementoLista["titulo"],elementoLista["descripcion"],elementoLista["id"],elementoLista["categoria"],elementoLista["fechaLimite"]);
-            console.log("TAREA",tarea)
+        listaJson.forEach((elementoLista)=>{          
+            let tarea = new Tarea(elementoLista["titulo"],elementoLista["descripcion"],elementoLista["id"],elementoLista["categoria"],elementoLista["fechaLimite"]);           
             listaNueva.agregarTareaConId(tarea);
         })
         return listaNueva;

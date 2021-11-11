@@ -1,5 +1,5 @@
-import ListaTareas from "./ListaTareas.js";
-import Tarea from  "./Tarea.js"
+import ListaTareas from "../../LogicaNegocio/ListaTareas.js";
+import Tarea from  "../../LogicaNegocio/Tarea.js"
  
 describe("Añadir Fecha Límite a Tarea", () => {
     //CC1

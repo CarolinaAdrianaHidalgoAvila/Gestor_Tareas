@@ -1,4 +1,4 @@
-import ListaTareas from "./ListaTareas.js";
+import ListaTareas from "../../LogicaNegocio/ListaTareas.js";
 
 describe("Lista de Tareas con categoría", ()=>{
     it("Agregar una categoria de las disponibles", () => {

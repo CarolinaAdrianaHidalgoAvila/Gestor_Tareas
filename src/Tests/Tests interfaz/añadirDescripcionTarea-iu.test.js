@@ -4,7 +4,7 @@ import fs from "fs";
 describe("Añadir Descripcion Tarea", () => {
   beforeAll(() => {
     document.body.innerHTML = fs.readFileSync("index.html", "utf8");
-    require("./index.js");
+    require("../../LogicaInterfaz/index.js");
   });
   it("deberia mostrar la tarea creada sin boton si no tiene descripcion", () => {
     const tarea_elem = document.querySelector("#tarea");  

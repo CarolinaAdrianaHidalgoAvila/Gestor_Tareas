@@ -3,7 +3,7 @@ import fs from "fs";
 describe("Crear Tarea", () => {
   beforeAll(() => {
     document.body.innerHTML = fs.readFileSync("index.html", "utf8");
-    require("./index.js");
+    require("../../LogicaInterfaz/index.js");
   });
 
   it("Al iniciar no hay nada en la lista de tareas", () => {
@@ -39,7 +39,7 @@ describe("Crear Tarea", () => {
     form.submit();   
     expect(lista_elem.innerHTML).toEqual("<ul><li>Segunda tarea[Personal]<span class=\"fecha-limite\"></span></li></ul>");
   });
-/*
+
   it("deberia mostrar la tarea creada", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
@@ -52,7 +52,7 @@ describe("Crear Tarea", () => {
     form.submit();   
     expect(lista_elem.innerHTML).toEqual("<ul><li>Segunda tarea[Personal]<span class=\"fecha-limite\">11/7/2022, 1:29:00 PM</span></li></ul>");
   });
-*/
+
 
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    

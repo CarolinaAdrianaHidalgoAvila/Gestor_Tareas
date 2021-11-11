@@ -1,5 +1,5 @@
-import ListaTareas from "./ListaTareas.js";
-import Tarea from  "./Tarea.js"
+import ListaTareas from "../../LogicaNegocio/ListaTareas.js";
+import Tarea from  "../../LogicaNegocio/Tarea.js"
  
 describe("Añadir Descripcion a Tarea", () => {
     it("si no tiene descripcion esta deberia estar vacia", () => {
