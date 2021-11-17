@@ -90,7 +90,6 @@ class ListaTareas{
                 categorias.push(element.getTitulo())
             }
         });
-        console.log(categorias);
         return categorias;
     }
 

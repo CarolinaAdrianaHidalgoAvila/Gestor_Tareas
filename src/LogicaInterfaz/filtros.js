@@ -1,6 +1,6 @@
 import ListaTareas from "../LogicaNegocio/ListaTareas.js";
-import { click } from "./index.js";
-import { getListaTareasAgregadas } from "./index.js";
+//import { click } from "./index.js";
+//import { getListaTareasAgregadas } from "./index.js";
 
 
     const listaTareas = document.querySelector("#lista-tareas");
