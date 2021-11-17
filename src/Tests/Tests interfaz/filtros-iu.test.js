@@ -61,7 +61,8 @@ describe("Filtrar por titulo/descripcion", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
 
-    const categoria = document.querySelector("#selector-categoria");    const form = document.querySelector("#agregarTareas-form");  
+    const categoria = document.querySelector("#selector-categoria");   
+    const form = document.querySelector("#agregarTareas-form");  
 
     const categoriaFiltro= document.querySelector("#selector-categoria-busqueda");
     tarea_elem.value = "Primera tarea";   
@@ -73,6 +74,28 @@ describe("Filtrar por titulo/descripcion", () => {
     var event = new Event('change');
     categoriaFiltro.dispatchEvent(event);
     expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Trabajo]<span class=\"fecha-limite\"></span></li></ul>");
+  });
+
+  
+  it("deberia mostrar la tarea correspondiente a la categoria filtrada", () => {
+    const divFiltroFecha = document.querySelector("#filtro-fecha");
+    const selectorFiltro =  document.querySelector("#selector-filtro");   
+    selectorFiltro.value="Fecha";
+    var event = new Event('change');
+    selectorFiltro.dispatchEvent(event);
+
+    expect(divFiltroFecha.style.display).toEqual("block");
+  });
+
+  it("deberia mostrar la tarea correspondiente a la categoria filtrada", () => {  
+    const selectorFiltro =  document.querySelector("#selector-filtro");
+    const categoriaFiltro= document.querySelector("#selector-categoria-busqueda");
+   
+    selectorFiltro.value="Categoria";
+    var event = new Event('change');
+    selectorFiltro.dispatchEvent(event);
+
+    expect(categoriaFiltro.style.display).toEqual("block");
   });
 
 

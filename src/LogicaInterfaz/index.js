@@ -16,6 +16,21 @@ const categoriaFiltro= document.querySelector("#selector-categoria-busqueda");
 const fechaInicioFiltro =  document.querySelector("#selector-fecha-limite-inicial");
 const fechaFinFiltro = document.querySelector("#selector-fecha-limite-final");
 const fechaFiltro = document.querySelector("#boton-filtrar-fecha");
+const divFiltroFecha = document.querySelector("#filtro-fecha");
+const selectorFiltro =  document.querySelector("#selector-filtro");
+
+selectorFiltro.addEventListener('change',
+  function(){
+    console.log("ENTRA AL SELECTOR EVENTO")
+    if(selectorFiltro.value=="Fecha"){
+      divFiltroFecha.style.display = "block";
+      categoriaFiltro.style.display = "none";
+    }
+    if(selectorFiltro.value=="Categoria"){
+      categoriaFiltro.style.display = "block";
+      divFiltroFecha.style.display = "none";
+    }   
+ });
 
 var today = new Date();
 var dd = today.getDate();
