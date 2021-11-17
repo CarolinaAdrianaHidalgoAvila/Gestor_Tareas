@@ -54,5 +54,12 @@ class Tarea{
         return this.fechaLimite==null || this.fechaLimite=="";
     }
 
+    getEstado(){
+        return "pendiente";
+    }
+    estaTerminada(){
+        return false;
+    }
+
 }
 export default Tarea;

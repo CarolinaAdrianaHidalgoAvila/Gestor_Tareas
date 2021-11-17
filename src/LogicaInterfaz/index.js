@@ -21,7 +21,6 @@ const selectorFiltro =  document.querySelector("#selector-filtro");
 
 selectorFiltro.addEventListener('change',
   function(){
-    console.log("ENTRA AL SELECTOR EVENTO")
     if(selectorFiltro.value=="Fecha"){
       divFiltroFecha.style.display = "block";
       categoriaFiltro.style.display = "none";

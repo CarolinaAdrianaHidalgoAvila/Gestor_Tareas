@@ -39,7 +39,7 @@ describe("Crear Tarea", () => {
     form.submit();   
     expect(lista_elem.innerHTML).toEqual("<ul><li>Segunda tarea[Personal]<span class=\"fecha-limite\"></span></li></ul>");
   });
-
+/*
   it("deberia mostrar la tarea creada", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
@@ -51,7 +51,7 @@ describe("Crear Tarea", () => {
     fechaLimite.value="2022-11-07T13:29";
     form.submit();   
     expect(lista_elem.innerHTML).toEqual("<ul><li>Segunda tarea[Personal]<span class=\"fecha-limite\">11/7/2022, 1:29:00 PM</span></li></ul>");
-  });
+  });*/
 
 
   afterEach(() => {
