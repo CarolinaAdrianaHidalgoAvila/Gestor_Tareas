@@ -34,7 +34,7 @@ describe("Filtrar por titulo/descripcion", () => {
     botonBuscar.click();
     expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"fecha-limite\"></span><button class=\"btn-descripcion\" id=\"tarea-1\">Descripcion</button></li></ul>");
   });
-/*
+
   it("deberia mostrar la tarea correspondiente al rango de fechas filtrado", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
@@ -55,7 +55,7 @@ describe("Filtrar por titulo/descripcion", () => {
     fechaFiltro.dispatchEvent(evt);
     //fechaFiltro.click();
     expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"fecha-limite\">11/7/2023, 1:29:00 PM</span></li></ul>");
-  });*/
+  });
 
   it("deberia mostrar la tarea correspondiente a la categoria filtrada", () => {
     const tarea_elem = document.querySelector("#tarea");  

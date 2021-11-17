@@ -40,8 +40,8 @@ describe("Añadir Descripcion Tarea", () => {
     boton_descripcion.click();
     expect(dialogo.innerHTML).toEqual('tarea de fisica<button id="close" type="button" onclick="document.getElementById(&quot;dialogo-descripcion&quot;).close()"></button>');
   });
-*/
 
+*/
 
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    

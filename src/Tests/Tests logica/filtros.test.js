@@ -6,13 +6,13 @@ describe("Pruebas de unidad de filtros para uso desde la interfaz", () => {
         var listaTareas = new ListaTareas();
         listaTareas.agregarTarea("primera tarea");
         listaTareas.agregarTarea("segunda tarea","","Personal");
-        expect(listaTareas.filtrarCategoriasLista("Personal")).toEqual([{"categoria": "Personal", "descripcion": "", "fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}]);
+        expect(listaTareas.filtrarCategoriasLista("Personal")).toEqual([{"categoria": "Personal", "descripcion": "","estaPendiente": true, "fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}]);
     });   
     it("filtrar por categoria", () => {      
         var listaTareas = new ListaTareas();
         listaTareas.agregarTarea("primera tarea");
         listaTareas.agregarTarea("segunda tarea","","Personal");
-        expect(listaTareas.getListaDesdeJson([{"categoria": "Personal", "descripcion": "", "fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}])).toEqual({"ListaTareas": [{"categoria": "Personal", "descripcion": "", "fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}]});
+        expect(listaTareas.getListaDesdeJson([{"categoria": "Personal", "descripcion": "","estaPendiente": true, "fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}])).toEqual({"ListaTareas": [{"categoria": "Personal", "descripcion": "", "estaPendiente": true,"fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}]});
     });  
     it("filtrar por categoria", () => {      
         var listaTareas = new ListaTareas();
@@ -28,6 +28,6 @@ describe("Pruebas de unidad de filtros para uso desde la interfaz", () => {
     it("filtrar por categoria", () => {      
         var listaTareas = new ListaTareas();
         listaTareas.agregarTareaConId(new Tarea("primera tarea","","tarea-1"));        
-        expect(listaTareas.getListaPorIds(["tarea-1"])).toEqual({"ListaTareas": [{"categoria": undefined, "descripcion": "", "fechaLimite": null, "id": "tarea-1", "titulo": "primera tarea"}]});
+        expect(listaTareas.getListaPorIds(["tarea-1"])).toEqual({"ListaTareas": [{"categoria": undefined, "descripcion": "","estaPendiente": true, "fechaLimite": null, "id": "tarea-1", "titulo": "primera tarea"}]});
     });   
 });

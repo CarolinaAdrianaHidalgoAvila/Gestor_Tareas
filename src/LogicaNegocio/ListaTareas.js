@@ -146,6 +146,10 @@ class ListaTareas{
         })
         return listaNueva;
     }
+
+    getEstadosTareas(){
+        return this.ListaTareas.map(tarea=>tarea.getEstado());
+    }
 }
 
 export default ListaTareas;

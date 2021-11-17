@@ -7,6 +7,7 @@ class Tarea{
         this.id = id;  
         this.categoria=categoria;
         this.setFechaLimite(fechaLimite);
+        this.estaPendiente = true;
     }
     controlCantidadPalabras(descripcion){
         if (descripcion.split(" ").length > 60 ){
@@ -55,10 +56,17 @@ class Tarea{
     }
 
     getEstado(){
-        return "pendiente";
+        let estadoTarea = "pendiente";
+        if(!this.estaPendiente) estadoTarea = "terminada";
+        return estadoTarea;
     }
+
     estaTerminada(){
-        return false;
+        return !this.estaPendiente;
+    }
+
+    terminar(){
+        this.estaPendiente = false;
     }
 
 }
