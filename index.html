@@ -6,7 +6,7 @@
     <style>
       body{
         font-family: 'Patrick Hand', cursive;
-
+        
         background: rgb(238,174,202);
         background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
       }
@@ -31,7 +31,7 @@
         font-size:25px;
       }
       hr{
-        width: 75%;
+        width: 80%;
       }
       #selector-fecha-limite-inicial, #selector-fecha-limite-final, #selector-fecha-limite{
         font-family: 'Patrick Hand', cursive;
@@ -57,6 +57,9 @@
         font-size: 25px;
         width:20%;
         height: 40px;
+        right: 50%;
+        margin-left: 30%;
+
       }
       #boton-buscar, #boton-filtrar-fecha,.btn-descripcion {
         background: rgb(177,253,255);
@@ -81,6 +84,9 @@
       #label-selector-filtro{
         margin-left: 10%;
       }
+      
+      
+      
     </style>
   </head>
   <body>
@@ -89,16 +95,16 @@
       <h2>Ingrese la información de su tarea</h2>
     <form id="agregarTareas-form">
       <label for="tarea">Título</label>
-      <input maxlength="30" type="text" id="tarea"> <br><br>
+      <input maxlength="30" type="text" id="tarea"> 
       <label for="descripcion">Descripción</label>
-      <input type="text" id ="descripcion"><br><br>
+      <input type="text" id ="descripcion">
       <label for="categoria">Categoría</label>
       <select id="selector-categoria">
         <option value="Sin categoria">Sin categoría</option>
         <option value="Personal">Personal</option>
         <option value="Trabajo">Trabajo</option>
         <option value="Estudio">Estudio</option>
-      </select><br><br>
+      </select>
       <label for="descripcion">Fecha Límite</label>
       <input min="min='1999-01-01T00:00'" type="datetime-local" id="selector-fecha-limite"><br><br>
       <input type="submit" value="Crear Tarea" class="button"/>       
