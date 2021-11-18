@@ -1,11 +1,12 @@
 class Tarea{
     
-    constructor(titulo,descripcion="",id,categoria,fechaLimite=null) {
+    constructor(titulo,descripcion="",id,categoria,fechaLimite=null,etiquetas="") {
 
         this.titulo = titulo;
         this.descripcion = this.controlCantidadPalabras(descripcion);
         this.id = id;  
         this.categoria=categoria;
+        this.etiquetas = etiquetas;
         this.setFechaLimite(fechaLimite);
         this.estaPendiente = true;
     }

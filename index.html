@@ -22,6 +22,7 @@
       }
       .content{
         padding-left:10%;
+        padding-right:10%;
         font-size:30px;
         color:blueviolet;
       }
@@ -46,7 +47,7 @@
         width:12%;
         height: 30px;
       }
-      #tarea, #descripcion, #selector-categoria, #filtro-text{
+      #tarea, #descripcion, #selector-categoria, #filtro-text, #etiqueta{
         height: 30px;
         margin-right: 20px;
       }
@@ -113,6 +114,8 @@
         <option value="Trabajo">Trabajo</option>
         <option value="Estudio">Estudio</option>
       </select>
+      <label for="etiqueta">Etiqueta(s)</label>
+      <input type="text" id ="etiqueta">
       <label for="descripcion">Fecha Límite</label>
       <input min="min='1999-01-01T00:00'" type="datetime-local" id="selector-fecha-limite"><br><br>
       <label for="descripcion">Descripción</label>
