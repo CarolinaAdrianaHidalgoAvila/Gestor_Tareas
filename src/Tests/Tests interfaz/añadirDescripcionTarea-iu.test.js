@@ -10,9 +10,9 @@ describe("Añadir Descripcion Tarea", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
     const form = document.querySelector("#agregarTareas-form");
-    tarea_elem.value = "Primera tarea";   
+    tarea_elem.value = "Primera tarea";  
     form.submit();   
-    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"fecha-limite\"><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></span></li></ul>");
+    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\"></span><span class=\"fecha-limite\"><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></span></li></ul>");
   });
 
   it("deberia mostrar la tarea creada con boton de descripcion si tiene descripcion", () => {
@@ -23,7 +23,7 @@ describe("Añadir Descripcion Tarea", () => {
     tarea_elem.value = "Primera tarea";   
     descripcion.value = "tarea de fisica";
     form.submit();   
-    expect(lista_elem.innerHTML).toEqual('<ul><li>Primera tarea[Sin categoria]<span class=\"fecha-limite\"></span><button class=\"btn-descripcion\" id=\"tarea-1\">Descripcion</button><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></li></ul>');
+    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\"></span><span class=\"fecha-limite\"></span><button class=\"btn-descripcion\" id=\"tarea-1\">Descripcion</button><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></li></ul>");
   });
 
   /*

@@ -122,7 +122,7 @@ class ListaTareas{
     }
 
     getListaTareasHtml(){        
-        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+'['+tarea.getCategoria()+']'+'<span class="fecha-limite">'+this.getFechaLimiteValida(tarea)+this.agregarBotonDescripcionSiTiene(tarea)+this.agregarCheckEstado(tarea)+'</li>');
+        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+'['+tarea.getCategoria()+']'+'<span class = "etiquetas">'+tarea.getEtiquetas()+'</span>'+'<span class="fecha-limite">'+this.getFechaLimiteValida(tarea)+this.agregarBotonDescripcionSiTiene(tarea)+this.agregarCheckEstado(tarea)+'</li>');
         return "<ul>"+tareasLi.join("")+"</ul>";       
     }
 

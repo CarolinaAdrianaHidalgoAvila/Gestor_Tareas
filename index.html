@@ -97,7 +97,14 @@
       .checkbox-terminada:checked{
         box-shadow: 0 0 0 3px hotpink;
       }
-      
+      .etiquetas{
+        border: solid;
+        padding:5px;
+        margin: 1%;
+      }
+      li{
+        margin: 2%;
+      }
     </style>
   </head>
   <body>
@@ -114,8 +121,8 @@
         <option value="Trabajo">Trabajo</option>
         <option value="Estudio">Estudio</option>
       </select>
-      <label for="etiqueta">Etiqueta(s)</label>
-      <input type="text" id ="etiqueta">
+      <label for="etiquetas">Etiqueta(s)</label>
+      <input type="text" id ="etiquetas">
       <label for="descripcion">Fecha Límite</label>
       <input min="min='1999-01-01T00:00'" type="datetime-local" id="selector-fecha-limite"><br><br>
       <label for="descripcion">Descripción</label>

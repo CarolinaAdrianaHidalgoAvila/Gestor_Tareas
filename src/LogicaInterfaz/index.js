@@ -18,6 +18,7 @@ const fechaFinFiltro = document.querySelector("#selector-fecha-limite-final");
 const fechaFiltro = document.querySelector("#boton-filtrar-fecha");
 const divFiltroFecha = document.querySelector("#filtro-fecha");
 const selectorFiltro =  document.querySelector("#selector-filtro");
+const etiquetas = document.querySelector("#etiquetas");
 
 selectorFiltro.addEventListener('change',
   function(){
@@ -134,9 +135,10 @@ form.addEventListener("submit", (event) => {
   let tituloTarea = tarea.value;
   let descripcionTarea = descripcion.value;
   let categoriaTarea = categoria.value;
-  let fechaLimiteTarea = fechaLimite.value;  
+  let fechaLimiteTarea = fechaLimite.value;
+  let etiqueta= etiquetas.value;  
 
-  listaTareasAgregadas.agregarTarea(tituloTarea,descripcionTarea,categoriaTarea,fechaLimiteTarea);
+  listaTareasAgregadas.agregarTarea(tituloTarea,descripcionTarea,categoriaTarea,fechaLimiteTarea,etiqueta);
   listaTareas.innerHTML = listaTareasAgregadas.getListaTareasHtml();
   if(tarea.value==""){
     alert("No se puede agregar tarea vacia");
@@ -146,5 +148,6 @@ form.addEventListener("submit", (event) => {
   tarea.value="";
   descripcion.value="";
   categoria.value="Sin categoria";
+  etiquetas.value="";
   fechaLimite.value="";
 });
