@@ -33,6 +33,29 @@ class Tarea{
     getFechaLimite(){
         return this.fechaLimite;
     }
+    validarLongitud(etiquetas){
+        let etiquetasValidadas=etiquetas;
+        if(etiquetas.length>60){
+            etiquetasValidadas=etiquetas.substr(0,60);
+        }
+        return etiquetasValidadas;
+    }
+    getEtiquetas(){
+        //redes,vpn,vlans -> [#redes #vpn #vlans]
+        let arrayEtiquetas=[]
+        if(this.etiquetas!=""){
+            let etiquetas = this.validarLongitud(this.etiquetas);
+            let totalEtiquetas = etiquetas.split(",");
+            totalEtiquetas.forEach(element => {
+                let etiqueta="#"+element;
+                etiqueta=etiqueta.replace(",","");
+                if(etiqueta.length>1){
+                    arrayEtiquetas.push(etiqueta);
+                }
+            });
+        }
+        return arrayEtiquetas;
+    }
 
     setFechaLimite(fechaLimite){
         if(fechaLimite==null|| fechaLimite==""){
