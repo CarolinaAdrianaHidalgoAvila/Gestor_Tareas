@@ -13,11 +13,11 @@ class ListaTareas{
         return validacion;
     }
 
-    agregarTarea(titulo,descripcion,categoria="Sin categoria",fechaLimite){
+    agregarTarea(titulo,descripcion,categoria="Sin categoria",fechaLimite,etiquetas=""){
         if(titulo!=""){
             if(this.controlNumeroLetrasTitulo(titulo)==true){
                 var id = this.ListaTareas.length+1;
-                var tarea = new Tarea(titulo,descripcion,"tarea-"+id,categoria,fechaLimite);
+                var tarea = new Tarea(titulo,descripcion,"tarea-"+id,categoria,fechaLimite,etiquetas);
                 if(tarea.fechaLimite==null) this.ListaTareas.push(tarea);
                 if (! this.esTareaConFechaPasada(tarea)) this.ListaTareas.push(tarea);
             }   
@@ -26,6 +26,10 @@ class ListaTareas{
     getDescripcionTareas(){
         return this.ListaTareas.filter(tarea=>tarea.getDescripcion()!="").map(tarea=>tarea.getDescripcion());
     }
+    getEtiquetasTareas(){
+        return this.ListaTareas.filter(tarea=>tarea.getEtiquetas()!=[]).map(tarea=>tarea.getEtiquetas());
+    }
+
 
     getTareaPorId(idTarea){
         var tarea = this.ListaTareas.find(tarea => tarea.getId()==idTarea); 
@@ -128,7 +132,7 @@ class ListaTareas{
         }
         let listaNueva = new ListaTareas();        
         listaJson.forEach((elementoLista)=>{          
-            let tarea = new Tarea(elementoLista["titulo"],elementoLista["descripcion"],elementoLista["id"],elementoLista["categoria"],elementoLista["fechaLimite"]);           
+            let tarea = new Tarea(elementoLista["titulo"],elementoLista["descripcion"],elementoLista["id"],elementoLista["categoria"],elementoLista["fechaLimite"],elementoLista["etiquetas"]);           
             if(!elementoLista["estaPendiente"]) tarea.terminar();
             listaNueva.agregarTareaConId(tarea);
         })
