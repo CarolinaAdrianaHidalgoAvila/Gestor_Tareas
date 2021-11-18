@@ -118,7 +118,7 @@ class ListaTareas{
     }
 
     getListaTareasHtml(){        
-        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+'['+tarea.getCategoria()+']'+'<span class="fecha-limite">'+this.getFechaLimiteValida(tarea)+this.agregarBotonDescripcionSiTiene(tarea)+'</li>');
+        let tareasLi = this.ListaTareas.map(tarea=>"<li>"+tarea.getTitulo()+'['+tarea.getCategoria()+']'+'<span class="fecha-limite">'+this.getFechaLimiteValida(tarea)+this.agregarBotonDescripcionSiTiene(tarea)+this.agregarCheckEstado(tarea)+'</li>');
         return "<ul>"+tareasLi.join("")+"</ul>";       
     }
 
@@ -129,6 +129,7 @@ class ListaTareas{
         let listaNueva = new ListaTareas();        
         listaJson.forEach((elementoLista)=>{          
             let tarea = new Tarea(elementoLista["titulo"],elementoLista["descripcion"],elementoLista["id"],elementoLista["categoria"],elementoLista["fechaLimite"]);           
+            if(!elementoLista["estaPendiente"]) tarea.terminar();
             listaNueva.agregarTareaConId(tarea);
         })
         return listaNueva;
@@ -149,6 +150,14 @@ class ListaTareas{
 
     getEstadosTareas(){
         return this.ListaTareas.map(tarea=>tarea.getEstado());
+    }
+    
+    agregarCheckEstado(tarea){
+        let disabled="";
+        if(tarea.estaTerminada()){
+            disabled="disabled";
+        }
+        return '<input class="checkbox-terminada" type="checkbox" id="'+tarea.getId()+'" value="terminada "'+disabled+'></input>'
     }
 }
 

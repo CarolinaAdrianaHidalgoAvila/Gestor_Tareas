@@ -69,5 +69,6 @@ class Tarea{
         this.estaPendiente = false;
     }
 
+
 }
 export default Tarea;

@@ -35,6 +35,7 @@ import ListaTareas from "../LogicaNegocio/ListaTareas.js";
         if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
         listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
         click();
+        check();
       }
     });
     
@@ -42,11 +43,10 @@ import ListaTareas from "../LogicaNegocio/ListaTareas.js";
       function(){
         var categoriaSeleccionada = this.options[categoriaFiltro.selectedIndex];
         var listaTareasCategorias = getListaTareasAgregadas().filtrarCategoriasLista(categoriaSeleccionada.value);
-        console.log("lista tareas Cat",listaTareasCategorias)
         var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasCategorias);
-        console.log("lista desde JSON",listaTareasFiltradas)
         listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();    
         click();
+        check();
       });
     
     botonBuscar.addEventListener("click", (e)=>{
@@ -64,4 +64,5 @@ import ListaTareas from "../LogicaNegocio/ListaTareas.js";
         listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
       }  
       click();
+      check();
     });

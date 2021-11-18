@@ -51,6 +51,7 @@ fechaFiltro.addEventListener("click", (e)=>{
     if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
     listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
     click();
+    check();
   }
 });
 
@@ -61,6 +62,7 @@ categoriaFiltro.addEventListener('change',
     var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasCategorias);
     listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();    
     click();
+    check();
   });
 
 botonBuscar.addEventListener("click", (e)=>{
@@ -78,23 +80,47 @@ botonBuscar.addEventListener("click", (e)=>{
     listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
   }  
   click();
+  check();
 });
 
 function click(){  
-  listaTareas.childNodes.forEach((elemento)=>{
+    Array.from(document.getElementsByClassName("btn-descripcion")).forEach((elemento)=>{
+      elemento.addEventListener("click", (e)=>{
+        const idTarea = e.target.id;
+        const descripcionTarea = listaTareasAgregadas.getTareaPorId(idTarea).getDescripcion();
+        dialogo.textContent = descripcionTarea;
+        const botonCerrar = document.createElement('button');
+        botonCerrar.id = "close";
+        botonCerrar.type = 'button';          
+        botonCerrar.setAttribute('onclick','document.getElementById("dialogo-descripcion").close()')   
+        botonCerrar.innerText = 'Ok!'; 
+        dialogo.appendChild(botonCerrar);
+        
+        if(descripcionTarea!=""){
+          dialogo.show();
+        }
+      });
+  });
+}
+
+function confirmarTareaTerminada() 
+{
+  return confirm("Estas seguro que terminaste la tarea?");
+}
+
+function check(){ 
+  Array.from(document.getElementsByClassName("checkbox-terminada")).forEach((elemento)=>{
     elemento.addEventListener("click", (e)=>{
       const idTarea = e.target.id;
-      const descripcionTarea = listaTareasAgregadas.getTareaPorId(idTarea).getDescripcion();
-      dialogo.textContent = descripcionTarea;
-      const botonCerrar = document.createElement('button');
-      botonCerrar.id = "close";
-      botonCerrar.type = 'button';          
-      botonCerrar.setAttribute('onclick','document.getElementById("dialogo-descripcion").close()')   
-      botonCerrar.innerText = 'Ok!'; 
-      dialogo.appendChild(botonCerrar);
-      
-      if(descripcionTarea!=""){
-        dialogo.show();
+      const tarea = listaTareasAgregadas.getTareaPorId(idTarea);
+      if (elemento.checked == true){  
+          if(confirmarTareaTerminada()){
+            tarea.terminar();
+            elemento.disabled=true;
+          }
+          else{
+            elemento.checked=false;
+          }
       }
     });
   });
@@ -116,6 +142,7 @@ form.addEventListener("submit", (event) => {
     alert("No se puede agregar tarea vacia");
   }
   click();
+  check();
   tarea.value="";
   descripcion.value="";
   categoria.value="Sin categoria";

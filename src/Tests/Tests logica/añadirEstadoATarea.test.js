@@ -55,5 +55,11 @@ describe("Añadir estado a Tarea ( Terminado, pendiente )", () => {
         var listaTareas = new  ListaTareas();      
         expect( listaTareas.getEstadosTareas()).toEqual([]);
     });
- 
+    it("Deberia devolver tag de checkbox para marcar como terminada una tarea", () => {
+        var tarea = new  Tarea("primera tarea");  
+        tarea.terminar();    
+        var listaTareas = new  ListaTareas();      
+        expect( listaTareas.agregarCheckEstado(tarea)).toEqual('<input class=\"checkbox-terminada\" type=\"checkbox\" id=\"undefined\" value=\"terminada \"disabled></input>');
+    });
+
 });

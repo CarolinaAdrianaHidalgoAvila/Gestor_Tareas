@@ -11,13 +11,14 @@ describe("Pruebas de unidad de filtros para uso desde la interfaz", () => {
     it("filtrar por categoria", () => {      
         var listaTareas = new ListaTareas();
         listaTareas.agregarTarea("primera tarea");
+        listaTareas.getTareaPorId("tarea-1").terminar();
         listaTareas.agregarTarea("segunda tarea","","Personal");
-        expect(listaTareas.getListaDesdeJson([{"categoria": "Personal", "descripcion": "","estaPendiente": true, "fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}])).toEqual({"ListaTareas": [{"categoria": "Personal", "descripcion": "", "estaPendiente": true,"fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}]});
+        expect(listaTareas.getListaDesdeJson([{"categoria": "Personal", "descripcion": "","estaPendiente": false, "fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}])).toEqual({"ListaTareas": [{"categoria": "Personal", "descripcion": "", "estaPendiente": false,"fechaLimite": null, "id": "tarea-2", "titulo": "segunda tarea"}]});
     });  
     it("filtrar por categoria", () => {      
         var listaTareas = new ListaTareas();
         listaTareas.agregarTarea("primera tarea");
-        listaTareas.agregarTarea("segunda tarea","","Personal");
+        listaTareas.agregarTarea("segunda tarea","","Personal");       
         expect(listaTareas.getListaDesdeJson([])).toEqual({"ListaTareas": []});
     });   
     it("filtrar por categoria", () => {      
