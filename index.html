@@ -47,7 +47,7 @@
         width:12%;
         height: 30px;
       }
-      #tarea, #descripcion, #selector-categoria, #filtro-text, #etiqueta{
+      #tarea, #descripcion, #selector-categoria, #filtro-text, #etiquetas{
         height: 30px;
         margin-right: 20px;
       }
@@ -122,11 +122,11 @@
         <option value="Estudio">Estudio</option>
       </select>
       <label for="etiquetas">Etiqueta(s)</label>
-      <input type="text" id ="etiquetas">
+      <input type="text" id ="etiquetas"><br><br>
+      <label for="descripcion">Descripción</label>
+      <input type="text" id ="descripcion">
       <label for="descripcion">Fecha Límite</label>
       <input min="min='1999-01-01T00:00'" type="datetime-local" id="selector-fecha-limite"><br><br>
-      <label for="descripcion">Descripción</label>
-      <input type="text" id ="descripcion"><br><br>
       <input type="submit" value="Crear Tarea" class="button"/>       
     </form>
     </div>

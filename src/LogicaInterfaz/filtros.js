@@ -50,16 +50,23 @@ import ListaTareas from "../LogicaNegocio/ListaTareas.js";
       });
     
     botonBuscar.addEventListener("click", (e)=>{
+      console.log("BOTON BUSCAR")
       if(textoFiltro.value==""){
+        console.log("Entra al if")
         listaTareas.innerHTML = getListaTareasAgregadas().getListaTareasHtml();
       }
       else{
+        console.log("Entra al else")
         var listaTareasTitulo = getListaTareasAgregadas().filtrarTitulo(textoFiltro.value);
         var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasTitulo);
         if(listaTareasFiltradas.getCantidadTareas()==0){
           var listaTareasIds = getListaTareasAgregadas().filtrarPorDescripcion(textoFiltro.value);
           listaTareasFiltradas = getListaTareasAgregadas().getListaPorIds(listaTareasIds);
-          if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
+          if(listaTareasFiltradas.getCantidadTareas()==0){
+            var listaTareasIdsEtiquetas = getListaTareasAgregadas().filtrarPorEtiquetas(textoFiltro.value);
+            listaTareasFiltradas = getListaTareasAgregadas().getListaPorIds(listaTareasIdsEtiquetas);
+            if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
+          }      
         }
         listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
       }  

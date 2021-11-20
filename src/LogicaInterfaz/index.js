@@ -67,19 +67,27 @@ categoriaFiltro.addEventListener('change',
   });
 
 botonBuscar.addEventListener("click", (e)=>{
+  console.log("ENTRA A INDEX index js")
   if(textoFiltro.value==""){
+    console.log("Texto para filtrar vacio")
     listaTareas.innerHTML = listaTareasAgregadas.getListaTareasHtml();
   }
   else{
+    console.log("Entra al else index js")
     var listaTareasTitulo = listaTareasAgregadas.filtrarTitulo(textoFiltro.value);
     var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasTitulo);
     if(listaTareasFiltradas.getCantidadTareas()==0){
       var listaTareasIds = listaTareasAgregadas.filtrarPorDescripcion(textoFiltro.value);
       listaTareasFiltradas = listaTareasAgregadas.getListaPorIds(listaTareasIds);
-      if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
+      if(listaTareasFiltradas.getCantidadTareas()==0){
+        listaTareasIds = listaTareasAgregadas.filtrarPorEtiquetas(textoFiltro.value);
+        listaTareasFiltradas = listaTareasAgregadas.getListaPorIds(listaTareasIds);
+
+        if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
+      }   
     }
     listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
-  }  
+  }
   click();
   check();
 });

@@ -98,7 +98,20 @@ describe("Filtrar por titulo/descripcion", () => {
     expect(categoriaFiltro.style.display).toEqual("block");
   });
 
-
+  it("deberia mostrar la tarea correspondiente a la etiqueta filtrada", () => {
+    const tarea_elem = document.querySelector("#tarea");  
+    const lista_elem = document.querySelector("#lista-tareas");
+    const form = document.querySelector("#agregarTareas-form");  
+    const etiquetas = document.querySelector("#etiquetas");
+    const botonBuscar = document.querySelector("#boton-buscar");
+    const textoFiltro = document.querySelector("#filtro-text");
+    tarea_elem.value = "Primera tarea";   
+    etiquetas.value = "fisica";
+    form.submit();   
+    textoFiltro.value="#fisica";
+    botonBuscar.click();
+    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\">#fisica</span><span class=\"fecha-limite\"><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></span></li></ul>");
+  });
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    
     lista_elem.innerHTML = "";
