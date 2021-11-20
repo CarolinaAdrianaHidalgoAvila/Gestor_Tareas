@@ -163,6 +163,21 @@ class ListaTareas{
         }
         return '<input class="checkbox-terminada" type="checkbox" id="'+tarea.getId()+'" value="terminada "'+disabled+'></input>'
     }
+    filtrarPorEtiquetas(textoDeFiltro){
+        let arrayTareas= [];
+        if(textoDeFiltro.length<=20){
+            textoDeFiltro = textoDeFiltro.substr(1,textoDeFiltro.length)
+            this.ListaTareas.forEach(tarea => {
+                let etiquetas = tarea.getEtiquetas();
+                    etiquetas.forEach(etiqueta => {
+                        if(etiqueta.toLowerCase().includes(textoDeFiltro.toLowerCase())){
+                            arrayTareas.push(tarea.getId())
+                        }
+                    });
+        });
+        }
+        return arrayTareas;
+    }
 }
 
 export default ListaTareas;
