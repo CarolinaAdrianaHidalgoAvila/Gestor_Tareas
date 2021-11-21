@@ -50,4 +50,57 @@ describe("Filtrar tarea por etiqueta", () => {
         listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Agradecimiento")        
         expect(  listaTareas.filtrarPorEtiquetas("#Tarjeta de felicitación")).toEqual([]);
     });
+
+    // Pruebas para la historia de Usuario: Cantidad de tareas por etiqueta
+    it("Deberia devolver la cantidad de tareas terminadas correspondientes a una etiqueta ", () => {
+        var listaTareas = new ListaTareas();
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Felicitación")
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Agradecimiento")
+                
+        expect(  listaTareas.tareasCompletadasPorEtiqueta("#Torta")).toEqual([0,"0%"]);
+    });    
+    it("Deberia devolver la cantidad de tareas correspondientes a una etiqueta ", () => {
+        var listaTareas = new ListaTareas();
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Felicitación")
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Maquillaje") 
+        listaTareas.getTareaPorId("tarea-2").terminar();         
+        expect(  listaTareas.tareasCompletadasPorEtiqueta("#Maquillaje")).toEqual([1,"100%"]);
+    }); 
+    it("Deberia devolver la cantidad de tareas correspondientes a una etiqueta ", () => {
+        var listaTareas = new ListaTareas();
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Felicitación")
+        listaTareas.getTareaPorId("tarea-1").terminar();   
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Maquillaje") 
+        listaTareas.getTareaPorId("tarea-2").terminar();         
+        expect(  listaTareas.tareasCompletadasPorEtiqueta("#Maquillaje")).toEqual([1,"100%"]);
+    });
+    it("Deberia devolver la cantidad de tareas correspondientes a una etiqueta ", () => {
+        var listaTareas = new ListaTareas();
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Felicitación")
+        listaTareas.getTareaPorId("tarea-1").terminar();   
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Maquillaje") 
+        listaTareas.getTareaPorId("tarea-2").terminar();         
+        listaTareas.agregarTarea("Festival de danza","","","","Ensayos,Maquillaje") 
+        listaTareas.getTareaPorId("tarea-3").terminar(); 
+        expect(  listaTareas.tareasCompletadasPorEtiqueta("#Maquillaje")).toEqual([2,"100%"]);
+    });  
+    it("Deberia devolver la cantidad de tareas correspondientes a una etiqueta ", () => {
+        var listaTareas = new ListaTareas();
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Felicitación")
+        listaTareas.getTareaPorId("tarea-1").terminar();   
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Maquillaje")        
+        listaTareas.agregarTarea("Festival de danza","","","","Ensayos,Maquillaje") 
+        listaTareas.getTareaPorId("tarea-3").terminar(); 
+        expect(  listaTareas.tareasCompletadasPorEtiqueta("#Maquillaje")).toEqual([1,"50%"]);
+    });  
+    it("Deberia devolver la cantidad de tareas correspondientes a una etiqueta ", () => {
+        var listaTareas = new ListaTareas();
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Felicitación")
+        listaTareas.getTareaPorId("tarea-1").terminar();   
+        listaTareas.agregarTarea("cumpleaños amiga","","","","Torta,Maquillaje")  
+        listaTareas.agregarTarea("Boda amiga","","","","Vestido,Maquillaje")       
+        listaTareas.agregarTarea("Festival de danza","","","","Ensayos,Maquillaje") 
+        listaTareas.getTareaPorId("tarea-3").terminar(); 
+        expect(  listaTareas.tareasCompletadasPorEtiqueta("#Maquillaje")).toEqual([1,"33.33333333333333%"]);
+    });  
 });

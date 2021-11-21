@@ -178,6 +178,21 @@ class ListaTareas{
         }
         return arrayTareas;
     }
+    tareasCompletadasPorEtiqueta(textoDeFiltro){
+        let tareasCompletadas=[];
+        let idTareasPorEtiqueta = this.filtrarPorEtiquetas(textoDeFiltro);
+        let tareasPorEtiqueta = this.getListaPorIds(idTareasPorEtiqueta);
+        let tareasPorEtiquetaTerminadas = tareasPorEtiqueta.getEstadosTareas();
+        tareasPorEtiquetaTerminadas.forEach(element => {
+            if(element=="terminada"){
+                tareasCompletadas.push(element);  
+            }
+        });
+        let porcentaje = (tareasCompletadas.length/(tareasPorEtiqueta.getCantidadTareas()))*100
+        let num= [tareasCompletadas.length, porcentaje+"%"];
+        
+        return num;
+    }
 }
 
 export default ListaTareas;
