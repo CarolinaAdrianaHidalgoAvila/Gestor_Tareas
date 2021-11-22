@@ -67,7 +67,7 @@ class ListaTareas{
         let tareaC= this.ListaTareas.find(tarea=>tarea.getTitulo()==tituloT);
         return tareaC.getCategoria();
     }
-    filtrarTitulo(tituloABuscado){
+    filtrarTitulo(tituloABuscado, ){
         let tituloBuscado= this.ListaTareas.filter(word => word.getTitulo() === tituloABuscado);
          if(tituloBuscado.length == 0){
             return "No existe";

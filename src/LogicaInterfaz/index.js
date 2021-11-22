@@ -24,6 +24,8 @@ const radio_estadoTerminada = document.querySelector("#estado-terminada");
 const radio_estadoPendiente = document.querySelector("#estado-pendiente");
 const radio_estadoTodas = document.querySelector("#estado-todas");
 
+var listaTareas_porEstados = [];
+
 selectorFiltro.addEventListener('change',
   function(){
     if(selectorFiltro.value=="Fecha"){
@@ -33,7 +35,12 @@ selectorFiltro.addEventListener('change',
     if(selectorFiltro.value=="Categoria"){
       categoriaFiltro.style.display = "block";
       divFiltroFecha.style.display = "none";
-    }   
+    }
+    if(selectorFiltro.value=="Ninguno"){
+      categoriaFiltro.style.display = "none";
+      divFiltroFecha.style.display = "none";
+    }
+  
  });
 
 
@@ -51,6 +58,7 @@ selectorFiltro.addEventListener('change',
     
  });
 
+
  function filtrarTareasPorEstados_enRadio(estado){
   var listaTareasEstado_Ids = listaTareasAgregadas.filtrarPorEstado(estado);
   var listaTareasFiltradas = listaTareasAgregadas.getListaPorIds(listaTareasEstado_Ids);
@@ -58,6 +66,12 @@ selectorFiltro.addEventListener('change',
   listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
   click();
   check();
+
+  listaTareas_porEstados = listaTareasFiltradas;
+  selectorFiltro.value = "Ninguno";
+  categoriaFiltro.style.display = "none";
+  divFiltroFecha.style.display = "none";
+
  }
 
 var today = new Date();
@@ -71,6 +85,7 @@ today = yyyy+'-'+mm+'-'+dd+"T00:00";
 document.getElementById("selector-fecha-limite").setAttribute("min", today);
 
 fechaFiltro.addEventListener("click", (e)=>{
+  var listaTareasAgregadas = listaTareas_porEstados ;
   if(new Date(fechaInicioFiltro.value)>new Date(fechaFinFiltro.value)){
     alert("Fecha incorrecta: fecha DESDE debe ser menor a fecha HASTA");
   }
@@ -86,6 +101,7 @@ fechaFiltro.addEventListener("click", (e)=>{
 
 categoriaFiltro.addEventListener('change',
   function(){
+    var listaTareasAgregadas = listaTareas_porEstados ;
     var categoriaSeleccionada = this.options[categoriaFiltro.selectedIndex];
     var listaTareasCategorias = listaTareasAgregadas.filtrarCategoriasLista(categoriaSeleccionada.value);
     var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasCategorias);
@@ -95,9 +111,8 @@ categoriaFiltro.addEventListener('change',
   });
 
 botonBuscar.addEventListener("click", (e)=>{
-  console.log("ENTRA A INDEX index js")
+  var listaTareasAgregadas = listaTareas_porEstados ;
   if(textoFiltro.value==""){
-    console.log("Texto para filtrar vacio")
     listaTareas.innerHTML = listaTareasAgregadas.getListaTareasHtml();
   }
   else{
@@ -186,4 +201,6 @@ form.addEventListener("submit", (event) => {
   categoria.value="Sin categoria";
   etiquetas.value="";
   fechaLimite.value="";
+  listaTareas_porEstados = listaTareasAgregadas;
+  radio_estadoTodas.click();
 });
