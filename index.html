@@ -154,6 +154,22 @@
         <button id="boton-filtrar-fecha">Filtrar por fecha</button>
     </div>
 
+    <div id="filtro-estado">
+      <p>Seleciona el estado: </p>
+      <form>
+        <label class="radio-inline">
+          <input id="estado-todas" type="radio" value="todas" name="estado" checked>Todas
+        </label>
+        <label  class="radio-inline">
+          <input id="estado-pendiente" type="radio" value="pendiente" name="estado">Pendiente
+        </label>
+        <label  class="radio-inline">
+          <input id="estado-terminada" type="radio" value="terminada" name="estado">Terminadas
+        </label>
+      </form>
+    </div>
+
+
     <h4>Tareas</h4>
     <div><ul id="lista-tareas"></ul></div>
     <dialog  id="dialogo-descripcion"></dialog>

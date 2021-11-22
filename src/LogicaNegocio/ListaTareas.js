@@ -193,6 +193,14 @@ class ListaTareas{
         
         return num;
     }
+
+    filtrarPorEstado(tipoEstado){
+        if (tipoEstado == "todas"){
+            return this.ListaTareas.map(tarea=>tarea.getId());
+        }
+        return this.ListaTareas.filter(tarea=>tarea.getEstado() == tipoEstado ).map(tarea=>tarea.getId() ); 
+    }
+
 }
 
 export default ListaTareas;

@@ -20,6 +20,10 @@ const divFiltroFecha = document.querySelector("#filtro-fecha");
 const selectorFiltro =  document.querySelector("#selector-filtro");
 const etiquetas = document.querySelector("#etiquetas");
 
+const radio_estadoTerminada = document.querySelector("#estado-terminada");
+const radio_estadoPendiente = document.querySelector("#estado-pendiente");
+const radio_estadoTodas = document.querySelector("#estado-todas");
+
 selectorFiltro.addEventListener('change',
   function(){
     if(selectorFiltro.value=="Fecha"){
@@ -31,6 +35,30 @@ selectorFiltro.addEventListener('change',
       divFiltroFecha.style.display = "none";
     }   
  });
+
+
+ radio_estadoTerminada.addEventListener('click',
+  function(){
+    filtrarTareasPorEstados_enRadio(radio_estadoTerminada.value)
+ });
+ radio_estadoPendiente.addEventListener('click',
+  function(){
+    filtrarTareasPorEstados_enRadio(radio_estadoPendiente.value)
+ });
+ radio_estadoTodas.addEventListener('click',
+  function(){
+    filtrarTareasPorEstados_enRadio(radio_estadoTodas.value)
+    
+ });
+
+ function filtrarTareasPorEstados_enRadio(estado){
+  var listaTareasEstado_Ids = listaTareasAgregadas.filtrarPorEstado(estado);
+  var listaTareasFiltradas = listaTareasAgregadas.getListaPorIds(listaTareasEstado_Ids);
+  if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
+  listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
+  click();
+  check();
+ }
 
 var today = new Date();
 var dd = today.getDate();

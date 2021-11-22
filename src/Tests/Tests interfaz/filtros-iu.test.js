@@ -112,8 +112,42 @@ describe("Filtrar por titulo/descripcion", () => {
     botonBuscar.click();
     expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\">#fisica</span><span class=\"fecha-limite\"><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></span></li></ul>");
   });
+  // Filtro por estado de Tarea
+  it("deberia mostrar las tareas correspondientes al 'estado' filtrado", () => {
+    const tarea_elem = document.querySelector("#tarea");  
+    const lista_elem = document.querySelector("#lista-tareas");
+    const form = document.querySelector("#agregarTareas-form");  
+    const radio_estadoTerminada = document.querySelector("#estado-terminada");
+
+    tarea_elem.value = "Primera tarea";   
+    form.submit();   
+    radio_estadoTerminada.click();
+    expect(lista_elem.innerHTML).toEqual("<ul></ul>")
+  });
+  it("deberia mostrar las tareas correspondientes al 'estado' filtrado al ultimo click que se haga", () => {
+    const tarea_elem = document.querySelector("#tarea");  
+    const lista_elem = document.querySelector("#lista-tareas");
+    const form = document.querySelector("#agregarTareas-form");  
+    const radio_estadoTerminada = document.querySelector("#estado-terminada");
+    const radio_estadoPendiente = document.querySelector("#estado-pendiente");
+    const radio_estadoTodas = document.querySelector("#estado-todas");
+
+    tarea_elem.value = "Primera tarea";   
+    form.submit();
+    
+    radio_estadoPendiente.click();
+    radio_estadoTodas.click();
+    radio_estadoTerminada.click(); 
+
+    expect(lista_elem.innerHTML).toEqual("<ul></ul>")
+    //expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\"></span><span class=\"fecha-limite\"></span><button class=\"btn-descripcion\" id=\"tarea-1\">Descripcion</button><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></li></ul>" );
+  });
+
+
+
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    
     lista_elem.innerHTML = "";
   });
+
 });
