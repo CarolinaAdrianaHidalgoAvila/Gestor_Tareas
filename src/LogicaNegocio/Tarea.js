@@ -45,7 +45,6 @@ class Tarea{
     getEtiquetas(){
         //redes,vpn,vlans -> [#redes #vpn #vlans]
         let arrayEtiquetas=[]
-        //console.log("*"+this.etiquetas+"*");
         if(this.etiquetas!=""){
             let etiquetas = this.validarLongitud(this.etiquetas);
             let totalEtiquetas = etiquetas.split(",");

@@ -142,9 +142,24 @@ describe("Filtrar por titulo/descripcion", () => {
     expect(lista_elem.innerHTML).toEqual("<ul></ul>")
     //expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\"></span><span class=\"fecha-limite\"></span><button class=\"btn-descripcion\" id=\"tarea-1\">Descripcion</button><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></li></ul>" );
   });
-
-
-
+  it("deberia NO mostrar la tarea NO completada por etiqueta filtrada", () => {
+    const tarea_elem = document.querySelector("#tarea");  
+    const lista_elem = document.querySelector("#lista-tareas");
+    const terminadas = document.querySelector("#terminadas");
+    const form = document.querySelector("#agregarTareas-form");  
+    const etiquetas = document.querySelector("#etiquetas");
+    const botonBuscarEtiquetaTerminada = document.querySelector("#boton-buscar-etiquetaTerminada");
+    const textoFiltroTerminado = document.querySelector("#filtroTerminado-text");
+    tarea_elem.value = "Primera tarea";   
+    etiquetas.value = "fisica";
+    form.submit();
+    let checkbox = lista_elem.querySelector("#tarea-1");
+    checkbox.click();
+    
+    textoFiltroTerminado.value="#fisica";
+    botonBuscarEtiquetaTerminada.click();
+    expect(terminadas.innerHTML).toEqual("");
+  });
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    
     lista_elem.innerHTML = "";

@@ -19,6 +19,9 @@ const fechaFiltro = document.querySelector("#boton-filtrar-fecha");
 const divFiltroFecha = document.querySelector("#filtro-fecha");
 const selectorFiltro =  document.querySelector("#selector-filtro");
 const etiquetas = document.querySelector("#etiquetas");
+const botonBuscarEtiquetaTerminada = document.querySelector("#boton-buscar-etiquetaTerminada");
+const textoFiltroTerminado = document.querySelector("#filtroTerminado-text");
+const terminadas = document.querySelector("#terminadas");
 
 const radio_estadoTerminada = document.querySelector("#estado-terminada");
 const radio_estadoPendiente = document.querySelector("#estado-pendiente");
@@ -116,7 +119,7 @@ botonBuscar.addEventListener("click", (e)=>{
     listaTareas.innerHTML = listaTareasAgregadas.getListaTareasHtml();
   }
   else{
-    console.log("Entra al else index js")
+   
     var listaTareasTitulo = listaTareasAgregadas.filtrarTitulo(textoFiltro.value);
     var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasTitulo);
     if(listaTareasFiltradas.getCantidadTareas()==0){
@@ -133,6 +136,21 @@ botonBuscar.addEventListener("click", (e)=>{
   }
   click();
   check();
+});
+botonBuscarEtiquetaTerminada.addEventListener("click", (e)=>{
+      if(textoFiltroTerminado.value==="" ){
+        alert("Texto para filtrar Invalido");
+      }
+      else{
+        var EtiquetaTerminada = listaTareasAgregadas.tareasCompletadasPorEtiqueta(textoFiltroTerminado.value);
+      }
+      if(EtiquetaTerminada[0]==0) alert("No existe"); 
+      else{
+        terminadas.innerHTML=`${textoFiltroTerminado.value} :[${String(EtiquetaTerminada[0])}, ${EtiquetaTerminada[1]} ]`;
+      } 
+      
+      click();
+      check();
 });
 
 function click(){  

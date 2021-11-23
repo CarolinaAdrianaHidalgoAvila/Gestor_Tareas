@@ -139,6 +139,7 @@ class ListaTareas{
         return listaNueva;
     }
 
+    
     agregarTareaConId(tarea){
         this.ListaTareas.push(tarea);
     }

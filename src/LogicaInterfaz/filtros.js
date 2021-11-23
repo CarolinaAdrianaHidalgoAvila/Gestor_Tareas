@@ -10,7 +10,10 @@ import ListaTareas from "../LogicaNegocio/ListaTareas.js";
     const fechaInicioFiltro =  document.querySelector("#selector-fecha-limite-inicial");
     const fechaFinFiltro = document.querySelector("#selector-fecha-limite-final");
     const fechaFiltro = document.querySelector("#boton-filtrar-fecha");
-    
+    const botonBuscarEtiquetaTerminada = document.querySelector("#boton-buscar-etiquetaTerminada");
+    const textoFiltroTerminado = document.querySelector("#filtroTerminado-text");
+    const terminadas = document.querySelector("#terminadas");
+
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
@@ -50,13 +53,13 @@ import ListaTareas from "../LogicaNegocio/ListaTareas.js";
       });
     
     botonBuscar.addEventListener("click", (e)=>{
-      console.log("BOTON BUSCAR")
+      
       if(textoFiltro.value==""){
-        console.log("Entra al if")
+        
         listaTareas.innerHTML = getListaTareasAgregadas().getListaTareasHtml();
       }
       else{
-        console.log("Entra al else")
+        
         var listaTareasTitulo = getListaTareasAgregadas().filtrarTitulo(textoFiltro.value);
         var listaTareasFiltradas = new ListaTareas().getListaDesdeJson(listaTareasTitulo);
         if(listaTareasFiltradas.getCantidadTareas()==0){
@@ -69,6 +72,20 @@ import ListaTareas from "../LogicaNegocio/ListaTareas.js";
           }      
         }
         listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
+      }  
+      click();
+      check();
+    });
+    botonBuscarEtiquetaTerminada.addEventListener("click", (e)=>{
+      if(textoFiltroTerminado.value==="" ){
+        alert("Texto para filtrar Invalido");
+      }
+      else{
+        var EtiquetaTerminada = getListaTareasAgregadas().tareasCompletadasPorEtiqueta(textoFiltroTerminado.value);
+      }
+      if(EtiquetaTerminada[0]==0) alert("No existe"); 
+      else{
+        terminadas.innerHTML=`${textoFiltroTerminado.value} :[${String(EtiquetaTerminada[0])}, ${EtiquetaTerminada[1]} ]`;
       }  
       click();
       check();

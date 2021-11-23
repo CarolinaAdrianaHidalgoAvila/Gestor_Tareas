@@ -103,7 +103,28 @@
         margin: 1%;
       }
       li{
-        margin: 2%;
+        margin: 5%;
+      }
+      .fecha{
+        width: auto;
+      }
+      .respuesta {
+        float: left;
+  text-align: left;
+  margin-right: 5%;
+  display: inline;
+  width: 49%;
+      }
+      #terminadas{
+        float: left;
+  text-align: left;
+  margin-left: 10%;
+  display: inline;
+      }
+      ul{
+        margin:0%;
+        padding: 0%;
+
       }
     </style>
   </head>
@@ -141,6 +162,8 @@
         <option value="Fecha">Fecha</option>
         <option value="Categoria">Categoria</option>    
       </select>
+      <input  maxlength="30" type="text" id="filtroTerminado-text" />
+      <button id="boton-buscar-etiquetaTerminada">Buscar</button>
       <select id="selector-categoria-busqueda" class="filtro">
         <option value="Sin categoria">Sin categoría</option>
         <option value="Personal">Personal</option>
@@ -148,9 +171,9 @@
         <option value="Estudio">Estudio</option>         
       </select>
       <div id="filtro-fecha" class="filtro">
-        <label for="selector-fecha-limite-inicial">Desde</label>
+        <label class ="fecha" for="selector-fecha-limite-inicial">Desde</label>
         <input min="min='1999-01-01T00:00'" type="date" id="selector-fecha-limite-inicial">
-        <label for="selector-fecha-limite-final">Hasta</label>
+        <label  class ="fecha" for="selector-fecha-limite-final">Hasta</label>
         <input min="min='1999-01-01T00:00'" type="date" id="selector-fecha-limite-final">
         <button id="boton-filtrar-fecha">Filtrar por fecha</button>
     </div>
@@ -172,7 +195,8 @@
 
 
     <h4>Tareas</h4>
-    <div><ul id="lista-tareas"></ul></div>
+    <div class = respuesta><ul id="lista-tareas"></ul></div>
+    <div  id="terminadas"></div>
     <dialog  id="dialogo-descripcion"></dialog>
     <script type="module" src="./src/LogicaInterfaz/index.js"></script>
     <script type="module" src="./src/LogicaInterfaz/filtros.js"></script>
