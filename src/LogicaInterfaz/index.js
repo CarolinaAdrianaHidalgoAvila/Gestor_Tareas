@@ -138,6 +138,8 @@ botonBuscar.addEventListener("click", (e)=>{
   check();
 });
 botonBuscarEtiquetaTerminada.addEventListener("click", (e)=>{
+  console.log("entra buscar etiqueta terminada,value= ",textoFiltroTerminado.value)
+     // var listaTareasAgregadas = listaTareas_porEstados ;
       if(textoFiltroTerminado.value==="" ){
         alert("Texto para filtrar Invalido");
       }

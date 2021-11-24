@@ -1,9 +1,9 @@
 import Tarea from "../LogicaNegocio/Tarea.js"
+
 class ListaTareas{
     constructor() {
-        this.ListaTareas = [];
+        this.ListaTareas = [];       
     }
-
     controlNumeroLetrasTitulo(titulo){
         var validacion=true;
         if(titulo.length>30) 
@@ -200,6 +200,24 @@ class ListaTareas{
             return this.ListaTareas.map(tarea=>tarea.getId());
         }
         return this.ListaTareas.filter(tarea=>tarea.getEstado() == tipoEstado ).map(tarea=>tarea.getId() ); 
+    }
+
+    getArrayEstadisticasTerminadasPorCategoria(categoria){
+        var tareasCategoria =  this.ListaTareas.filter(tarea=>tarea.getCategoria() == categoria);
+        var cantidadTotalTareasCategoria = tareasCategoria.length;
+        if (cantidadTotalTareasCategoria==0) return [categoria]=[0,"0%"];
+        var cantidadTerminadasTareasCategoria =  tareasCategoria.filter(tarea=>tarea.estaTerminada()).length;  
+        var porcentajeTareasCategoriaTerminadas = cantidadTerminadasTareasCategoria/cantidadTotalTareasCategoria; 
+        return [cantidadTerminadasTareasCategoria,`${porcentajeTareasCategoriaTerminadas.toFixed(2)*100}%`]
+    }    
+
+    tareasTerminadasPorCategoria(){   
+        var cantidadTareasCategoriaTerminadas={};              
+        cantidadTareasCategoriaTerminadas["Personal"]=this.getArrayEstadisticasTerminadasPorCategoria("Personal");
+        cantidadTareasCategoriaTerminadas["Trabajo"]=this.getArrayEstadisticasTerminadasPorCategoria("Trabajo");
+        cantidadTareasCategoriaTerminadas["Estudio"]=this.getArrayEstadisticasTerminadasPorCategoria("Estudio");
+        cantidadTareasCategoriaTerminadas["Sin categoria"]=this.getArrayEstadisticasTerminadasPorCategoria("Sin categoria");        
+        return cantidadTareasCategoriaTerminadas;
     }
 
 }
