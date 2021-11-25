@@ -55,9 +55,7 @@ selectorFiltro.addEventListener('change',
  });
 
  function mostrarOpcionesEstadisticas(){
-   //console.log("entra selector=",selectorTipoEstadisticas.value)
   if(selectorTipoEstadisticas.value=="Categorias"){
-    console.log("entra CATEGORIA")
     botonBuscarEtiquetaTerminada.style.display = "none";
     textoFiltroTerminado.style.display = "none"; 
     terminadas.style.display = "block";  

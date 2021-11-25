@@ -167,11 +167,10 @@ class ListaTareas{
     filtrarPorEtiquetas(textoDeFiltro){
         let arrayTareas= [];
         if(textoDeFiltro.length<=20){
-            textoDeFiltro = textoDeFiltro.substr(1,textoDeFiltro.length)
             this.ListaTareas.forEach(tarea => {
                 let etiquetas = tarea.getEtiquetas();
                     etiquetas.forEach(etiqueta => {
-                        if(etiqueta.toLowerCase().includes(textoDeFiltro.toLowerCase())){
+                        if(etiqueta.toLowerCase() == textoDeFiltro.toLowerCase()){
                             arrayTareas.push(tarea.getId())
                         }
                     });
@@ -218,6 +217,22 @@ class ListaTareas{
         cantidadTareasCategoriaTerminadas["Estudio"]=this.getArrayEstadisticasTerminadasPorCategoria("Estudio");
         cantidadTareasCategoriaTerminadas["Sin categoria"]=this.getArrayEstadisticasTerminadasPorCategoria("Sin categoria");        
         return cantidadTareasCategoriaTerminadas;
+    }
+    filtrarPorUnaFechaYEtiqueta(fecha,etiqueta){
+        let tareasConEtiqueta = this.filtrarPorEtiquetas(etiqueta)
+        let listaTareasFiltradas = this.getListaPorIds(tareasConEtiqueta)
+        let tareasTerminadas = listaTareasFiltradas.filtrarPorEstado("terminada")
+        let listaTareasTerminadas = listaTareasFiltradas.getListaPorIds(tareasTerminadas)
+        let tareasPorFecha = listaTareasTerminadas.filtrarPorUnaFecha(fecha)
+        return tareasPorFecha;
+    }
+    filtrarPorUnRangoFechasYEtiqueta(fechaInicio,fechaFin,etiqueta){
+        let tareasConEtiqueta = this.filtrarPorEtiquetas(etiqueta)
+        let listaTareasFiltradas = this.getListaPorIds(tareasConEtiqueta)
+        let tareasTerminadas = listaTareasFiltradas.filtrarPorEstado("terminada")
+        let listaTareasTerminadas = listaTareasFiltradas.getListaPorIds(tareasTerminadas)
+        let tareasPorFecha = listaTareasTerminadas.filtrarPorUnRangoFechas(fechaInicio,fechaFin)
+        return tareasPorFecha;
     }
 
 }

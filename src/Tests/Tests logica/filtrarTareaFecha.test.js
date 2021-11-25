@@ -82,5 +82,4 @@ describe("Filtrar tarea por descripción", () => {
         listaTareas.agregarTarea("ir a piscina","nadar 50 minutos","","2022-10-11T23:29");      
         expect(  listaTareas.filtrarPorUnRangoFechas("2022-11-07T23:59","2022-12-07T23:59")).toEqual([]);
     });
-
 });
