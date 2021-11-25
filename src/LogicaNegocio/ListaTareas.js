@@ -230,36 +230,23 @@ class ListaTareas{
         let porcentaje = (((tareasPorFechaCompletadas.length)/(tareasPorFecha.length)).toFixed(2))*100
                 let num= [tareasPorFechaCompletadas.length, porcentaje+"%"];
         if(tareasPorFecha.length==0){
-            console.log("NO HAY TAREAS CON ESA ETIQUETA "+etiqueta);
             num=[0,"0%"]
         }
 
         return num;
     }
     filtrarPorUnRangoFechasYEtiqueta(fechaInicio,fechaFin,etiqueta){
-        //Array con ID de las tareas que tienen la etiqueta
-        let tareasConEtiqueta = this.filtrarPorEtiquetas(etiqueta)
-        //Lista de tareas que tienen una etiqueta
-        let listaTareasFiltradas = this.getListaPorIds(tareasConEtiqueta)
-        console.log(listaTareasFiltradas.getCantidadTareas()+" tareas con esa etiqueta")
-        //Array con id de las tareas que tienen una etiqueta y están terminadas
-        let tareasTerminadas = listaTareasFiltradas.filtrarPorEstado("terminada")
-        //Lista de tareas que tienen la etiqueta y están terminadas
-        let listaTareasTerminadas = listaTareasFiltradas.getListaPorIds(tareasTerminadas)
-        //Tareas terminadas con una etiqueta dentro de un rango 
-        let tareasPorFechaCompletadas = listaTareasTerminadas.filtrarPorUnRangoFechas(fechaInicio,fechaFin)
-        //Tareas que tienen una etiqueta detntro de un rango 
-        let tareasPorFecha = listaTareasFiltradas.filtrarPorUnRangoFechas(fechaInicio,fechaFin)
-        console.log(tareasPorFecha.length+" tareas con esa etiqueta en ese rango")
-        let porcentaje = (((tareasPorFechaCompletadas.length)/(tareasPorFecha.length)).toFixed(2))*100
+        let tareasConEtiqueta = this.filtrarPorEtiquetas(etiqueta);
+        let listaTareasFiltradas = this.getListaPorIds(tareasConEtiqueta);
+        let tareasTerminadas = listaTareasFiltradas.filtrarPorEstado("terminada");
+        let listaTareasTerminadas = listaTareasFiltradas.getListaPorIds(tareasTerminadas);
+        let tareasPorFechaCompletadas = listaTareasTerminadas.filtrarPorUnRangoFechas(fechaInicio,fechaFin);
+        let tareasPorFecha = listaTareasFiltradas.filtrarPorUnRangoFechas(fechaInicio,fechaFin);
+        let porcentaje = (((tareasPorFechaCompletadas.length)/(tareasPorFecha.length)).toFixed(2))*100;
         let num= [tareasPorFechaCompletadas.length, porcentaje+"%"];
         if(tareasPorFecha.length==0){
-            console.log("ENTRA AL IF")
             num=[0,"0%"]
         }
-        /*let porcentaje = (Math.round(tareasPorFechaCompletadas.length/(tareasPorFecha.length)))*100
-        let num= [tareasPorFechaCompletadas.length, porcentaje+"%"];
-        */
         return num;
     }
 

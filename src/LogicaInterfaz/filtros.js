@@ -67,11 +67,10 @@ import ListaTareas from "../LogicaNegocio/ListaTareas.js";
       else{
         var listaTareasIds = getListaTareasAgregadas().filtrarPorUnRangoFechas(fechaInicioFiltro.value+'T00:00',fechaFinFiltro.value+'T23:59');
         var listaTareasFiltradas = getListaTareasAgregadas().getListaPorIds(listaTareasIds);
+        var EtiquetaTerminada= getListaTareasAgregadas().filtrarPorUnRangoFechasYEtiqueta(fechaInicioFiltro.value,fechaFinFiltro.value,textoFiltroTerminado.value);
         if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
         listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
         if(selectorTipoEstadisticas.value=="Etiqueta" && textoFiltroTerminado.value != "" ){
-     
-          var EtiquetaTerminada= getListaTareasAgregadas().filtrarPorUnRangoFechasYEtiqueta(fechaInicioFiltro.value,fechaFinFiltro.value,textoFiltroTerminado.value);
       terminadas.innerHTML=`${textoFiltroTerminado.value} :[${String(EtiquetaTerminada[0])}, ${EtiquetaTerminada[1]} ]`;
         }
         click();
