@@ -101,6 +101,6 @@ describe("Filtrar tarea por etiqueta", () => {
         listaTareas.agregarTarea("Boda amiga","","","","Vestido,Maquillaje")       
         listaTareas.agregarTarea("Festival de danza","","","","Ensayos,Maquillaje") 
         listaTareas.getTareaPorId("tarea-3").terminar(); 
-        expect(  listaTareas.tareasCompletadasPorEtiqueta("#Maquillaje")).toEqual([1,"33.33333333333333%"]);
+        expect(  listaTareas.tareasCompletadasPorEtiqueta("#Maquillaje")).toEqual([1,"33%"]);
     });  
 });

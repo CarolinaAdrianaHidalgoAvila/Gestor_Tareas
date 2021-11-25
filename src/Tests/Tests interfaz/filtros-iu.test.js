@@ -34,7 +34,7 @@ describe("Filtrar por titulo/descripcion", () => {
     botonBuscar.click();
     expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\"></span><span class=\"fecha-limite\"></span><button class=\"btn-descripcion\" id=\"tarea-1\">Descripcion</button><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></li></ul>");
   });
-/*
+
   it("deberia mostrar la tarea correspondiente al rango de fechas filtrado", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
@@ -54,9 +54,9 @@ describe("Filtrar por titulo/descripcion", () => {
     evt.initEvent("click", false, true);
     fechaFiltro.dispatchEvent(evt);
     //fechaFiltro.click();
-    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"fecha-limite\">11/7/2023, 1:29:00 PM<input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></span></li></ul>");
+    expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\"></span><span class=\"fecha-limite\">7/11/2023 13:29:00<input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></span></li></ul>" );
   });
-*/
+
   it("deberia mostrar la tarea correspondiente a la categoria filtrada", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
@@ -170,7 +170,39 @@ describe("Filtrar por titulo/descripcion", () => {
 
     expect(listaEstadisticas.innerHTML).toEqual("<ul><li>Sin categoria:[0  |  0%]</li><li>Personal:[0  |  0%]</li><li>Trabajo:[0  |  0%]</li><li>Estudio:[0  |  0%]</li><ul></ul></ul>");
   });
-
+  it("deberia mostrar la tarea correspondiente al rango de fechas filtrado", () => {
+    const tarea_elem = document.querySelector("#tarea");  
+    const lista_elem = document.querySelector("#lista-tareas");
+    const fechaInicioFiltro =  document.querySelector("#selector-fecha-limite-inicial");
+    const fechaFinFiltro = document.querySelector("#selector-fecha-limite-final");
+    const fechaFiltro = document.querySelector("#boton-filtrar-fecha");   
+    const fechaLimite = document.querySelector("#selector-fecha-limite");
+    const form = document.querySelector("#agregarTareas-form");  
+    const etiquetas = document.querySelector("#etiquetas");
+    const botonBuscarEtiquetaTerminada = document.querySelector("#boton-buscar-etiquetaTerminada");
+    const textoFiltroTerminado = document.querySelector("#filtroTerminado-text");  
+    const selectorTipoEstadisticas = document.querySelector("#selector-tipo-estadisticas");   
+    tarea_elem.value = "Primera tarea"; 
+    etiquetas.value = "fisica";
+    fechaLimite.value = "2023-11-25T13:29";
+    form.submit();   
+    tarea_elem.value = "Segunda tarea"; 
+    etiquetas.value = "fisica";
+    fechaLimite.value = "2023-11-07T13:29";
+    form.submit();  
+    fechaInicioFiltro.value = "2021-11-25";
+    fechaFinFiltro.value = "2023-11-07T13:29";
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("click", false, true);
+    fechaFiltro.dispatchEvent(evt);
+    //fechaFiltro.click();
+    selectorTipoEstadisticas.value="Etiqueta";
+    var event = new Event('change');
+    selectorTipoEstadisticas.dispatchEvent(event);
+    textoFiltroTerminado.value="#fisica";
+    botonBuscarEtiquetaTerminada.click();
+    expect(terminadas.innerHTML).toEqual("#fisica :[0, 0% ]");
+  });
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    
     lista_elem.innerHTML = "";

@@ -36,7 +36,12 @@ function obtenerEstadisticasPorCategoria(){
   terminadas.innerHTML= elemento;
  
 }
-
+function obtenerEstadisticasPorEtiqueta(){
+  var estadisticas = listaTareasAgregadas.tareasCompletadasPorEtiqueta(textoFiltroTerminado);
+  var elemento=`${textoFiltroTerminado.value} :[${String(estadisticas[0])}, ${estadisticas[1]} ]`
+  terminadas.innerHTML= elemento;
+ 
+}
 selectorFiltro.addEventListener('change',
   function(){
     if(selectorFiltro.value=="Fecha"){
@@ -65,6 +70,7 @@ selectorFiltro.addEventListener('change',
     botonBuscarEtiquetaTerminada.style.display = "inline";
     textoFiltroTerminado.style.display = "inline";
     terminadas.style.display = "none";
+    obtenerEstadisticasPorEtiqueta();
   }
   if(selectorTipoEstadisticas.value=="Ninguno"){
     botonBuscarEtiquetaTerminada.style.display = "none";
@@ -124,8 +130,13 @@ fechaFiltro.addEventListener("click", (e)=>{
   else{
     var listaTareasIds = listaTareasAgregadas.filtrarPorUnRangoFechas(fechaInicioFiltro.value+'T00:00',fechaFinFiltro.value+'T23:59');
     var listaTareasFiltradas = listaTareasAgregadas.getListaPorIds(listaTareasIds);
+    var EtiquetaTerminada= listaTareasAgregadas.filtrarPorUnRangoFechasYEtiqueta(fechaInicioFiltro.value,fechaFinFiltro.value,textoFiltroTerminado.value);
     if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
     listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
+    if(selectorTipoEstadisticas.value=="Etiqueta" && textoFiltroTerminado.value != "" ){
+      terminadas.innerHTML=`${textoFiltroTerminado.value} :[${String(EtiquetaTerminada[0])}, ${EtiquetaTerminada[1]} ]`;
+      terminadas.style.display = "block";
+    }
     click();
     check();
   }
