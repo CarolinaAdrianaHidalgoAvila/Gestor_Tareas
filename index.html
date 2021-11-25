@@ -83,8 +83,11 @@
         display: none;
         margin-left: 35%;
       }
+      #boton-buscar-etiquetaTerminada,#filtroTerminado-text{
+        display: none;
+      }
       #label-selector-filtro{
-        margin-left: 10%;
+        margin-left: 2%;
       }
       label {
         width:135px;
@@ -105,21 +108,25 @@
       li{
         margin: 5%;
       }
+      #terminadas li{
+        margin: 0%;
+      }
       .fecha{
         width: auto;
       }
       .respuesta {
         float: left;
-  text-align: left;
-  margin-right: 5%;
-  display: inline;
-  width: 49%;
+        text-align: left;
+        margin-right: 5%;
+        display: inline;
+        width: 49%;
       }
       #terminadas{
-        float: left;
-  text-align: left;
-  margin-left: 10%;
-  display: inline;
+        float: right;
+        text-align: left;
+        margin-right: 25%;
+        margin-top: 1%;
+        display: inline;
       }
       ul{
         margin:0%;
@@ -141,7 +148,7 @@
         <option value="Personal">Personal</option>
         <option value="Trabajo">Trabajo</option>
         <option value="Estudio">Estudio</option>
-      </select>
+      </select>      
       <label for="etiquetas">Etiqueta(s)</label>
       <input type="text" id ="etiquetas"><br><br>
       <label for="descripcion">Descripción</label>
@@ -161,6 +168,12 @@
         <option value="Ninguno">Ninguno</option>  
         <option value="Fecha">Fecha</option>
         <option value="Categoria">Categoria</option>    
+      </select>      
+      <label for="selector-tipo-estadisticas">Estadisticas segun:</label>
+      <select id="selector-tipo-estadisticas">
+        <option value="Ninguno">Ninguno</option>
+        <option value="Categorias">Categorias</option>
+        <option value="Etiqueta">Etiqueta</option>
       </select>
       <input  maxlength="30" type="text" id="filtroTerminado-text" />
       <button id="boton-buscar-etiquetaTerminada">Buscar</button>
@@ -177,7 +190,7 @@
         <input min="min='1999-01-01T00:00'" type="date" id="selector-fecha-limite-final">
         <button id="boton-filtrar-fecha">Filtrar por fecha</button>
     </div>
-
+    <div  id="terminadas"></div>
     <div id="filtro-estado">
       <p>Seleciona el estado: </p>
       <form>
@@ -192,11 +205,8 @@
         </label>
       </form>
     </div>
-
-
     <h4>Tareas</h4>
-    <div class = respuesta><ul id="lista-tareas"></ul></div>
-    <div  id="terminadas"></div>
+    <div class = respuesta><ul id="lista-tareas"></ul></div>    
     <dialog  id="dialogo-descripcion"></dialog>
     <script type="module" src="./src/LogicaInterfaz/index.js"></script>
     <script type="module" src="./src/LogicaInterfaz/filtros.js"></script>

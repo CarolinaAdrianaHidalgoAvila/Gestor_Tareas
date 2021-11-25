@@ -22,6 +22,7 @@ const etiquetas = document.querySelector("#etiquetas");
 const botonBuscarEtiquetaTerminada = document.querySelector("#boton-buscar-etiquetaTerminada");
 const textoFiltroTerminado = document.querySelector("#filtroTerminado-text");
 const terminadas = document.querySelector("#terminadas");
+const selectorTipoEstadisticas = document.querySelector("#selector-tipo-estadisticas");  
 
 const radio_estadoTerminada = document.querySelector("#estado-terminada");
 const radio_estadoPendiente = document.querySelector("#estado-pendiente");
@@ -29,22 +30,52 @@ const radio_estadoTodas = document.querySelector("#estado-todas");
 
 var listaTareas_porEstados = [];
 
+function obtenerEstadisticasPorCategoria(){
+  var estadisticas = listaTareasAgregadas.tareasTerminadasPorCategoria();
+  var elemento=`<ul><li>Sin categoria:[${estadisticas["Sin categoria"][0]}  |  ${estadisticas["Sin categoria"][1]}]</li><li>Personal:[${estadisticas["Personal"][0]}  |  ${estadisticas["Personal"][1]}]</li><li>Trabajo:[${estadisticas["Trabajo"][0]}  |  ${estadisticas["Trabajo"][1]}]</li><li>Estudio:[${estadisticas["Estudio"][0]}  |  ${estadisticas["Estudio"][1]}]</li><ul>`;
+  terminadas.innerHTML= elemento;
+ 
+}
+
 selectorFiltro.addEventListener('change',
   function(){
     if(selectorFiltro.value=="Fecha"){
       divFiltroFecha.style.display = "block";
-      categoriaFiltro.style.display = "none";
+      categoriaFiltro.style.display = "none";      
     }
     if(selectorFiltro.value=="Categoria"){
       categoriaFiltro.style.display = "block";
       divFiltroFecha.style.display = "none";
     }
     if(selectorFiltro.value=="Ninguno"){
-      categoriaFiltro.style.display = "none";
+      botonBuscarEtiquetaTerminada.style.display = "none";
       divFiltroFecha.style.display = "none";
     }
   
  });
+
+ function mostrarOpcionesEstadisticas(){
+   //console.log("entra selector=",selectorTipoEstadisticas.value)
+  if(selectorTipoEstadisticas.value=="Categorias"){
+    console.log("entra CATEGORIA")
+    botonBuscarEtiquetaTerminada.style.display = "none";
+    textoFiltroTerminado.style.display = "none"; 
+    terminadas.style.display = "block";  
+    obtenerEstadisticasPorCategoria();
+  }
+  if(selectorTipoEstadisticas.value=="Etiqueta"){
+    botonBuscarEtiquetaTerminada.style.display = "inline";
+    textoFiltroTerminado.style.display = "inline";
+    terminadas.style.display = "none";
+  }
+  if(selectorTipoEstadisticas.value=="Ninguno"){
+    botonBuscarEtiquetaTerminada.style.display = "none";
+    textoFiltroTerminado.style.display = "none";
+    terminadas.style.display = "none";
+  }
+ }
+
+ selectorTipoEstadisticas.addEventListener('change',mostrarOpcionesEstadisticas);
 
 
  radio_estadoTerminada.addEventListener('click',
@@ -138,7 +169,6 @@ botonBuscar.addEventListener("click", (e)=>{
   check();
 });
 botonBuscarEtiquetaTerminada.addEventListener("click", (e)=>{
-  console.log("entra buscar etiqueta terminada,value= ",textoFiltroTerminado.value)
      // var listaTareasAgregadas = listaTareas_porEstados ;
       if(textoFiltroTerminado.value==="" ){
         alert("Texto para filtrar Invalido");
@@ -149,8 +179,9 @@ botonBuscarEtiquetaTerminada.addEventListener("click", (e)=>{
       if(EtiquetaTerminada[0]==0) alert("No existe"); 
       else{
         terminadas.innerHTML=`${textoFiltroTerminado.value} :[${String(EtiquetaTerminada[0])}, ${EtiquetaTerminada[1]} ]`;
-      } 
-      
+        terminadas.style.display = "block";
+      }       
+      //terminadas.style.display = "block";
       click();
       check();
 });
@@ -189,6 +220,8 @@ function check(){
           if(confirmarTareaTerminada()){
             tarea.terminar();
             elemento.disabled=true;
+            selectorTipoEstadisticas.value = "Ninguno";
+            mostrarOpcionesEstadisticas();
           }
           else{
             elemento.checked=false;
@@ -223,4 +256,7 @@ form.addEventListener("submit", (event) => {
   fechaLimite.value="";
   listaTareas_porEstados = listaTareasAgregadas;
   radio_estadoTodas.click();
+  selectorTipoEstadisticas.value = "Ninguno";
+  mostrarOpcionesEstadisticas();
+  
 });

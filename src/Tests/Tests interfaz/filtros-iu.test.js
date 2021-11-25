@@ -160,6 +160,17 @@ describe("Filtrar por titulo/descripcion", () => {
     botonBuscarEtiquetaTerminada.click();
     expect(terminadas.innerHTML).toEqual("");
   });
+
+  it("deberia mostrar las estadisticas de tareas terminadas por categoria", () => {
+    const selectorTipoEstadisticas = document.querySelector("#selector-tipo-estadisticas");  
+    const listaEstadisticas = document.querySelector("#terminadas");
+    selectorTipoEstadisticas.value="Categorias";
+    var event = new Event('change');
+    selectorTipoEstadisticas.dispatchEvent(event);
+
+    expect(listaEstadisticas.innerHTML).toEqual("<ul><li>Sin categoria:[0  |  0%]</li><li>Personal:[0  |  0%]</li><li>Trabajo:[0  |  0%]</li><li>Estudio:[0  |  0%]</li><ul></ul></ul>");
+  });
+
   afterEach(() => {
     const lista_elem = document.querySelector("#lista-tareas");    
     lista_elem.innerHTML = "";
