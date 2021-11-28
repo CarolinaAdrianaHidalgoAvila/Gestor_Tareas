@@ -30,8 +30,14 @@ const radio_estadoTodas = document.querySelector("#estado-todas");
 
 var listaTareas_porEstados = [];
 
-function obtenerEstadisticasPorCategoria(){
-  var estadisticas = listaTareasAgregadas.tareasTerminadasPorCategoria();
+function obtenerEstadisticasPorCategoria(filtroConFecha=false){
+  var estadisticas;
+  if (filtroConFecha== true){
+    console.log( "Entraste al if --- ", filtroConFecha)
+    estadisticas = listaTareasAgregadas.tareasTerminadasPorCategoria_PorRangoDeFecha(fechaInicioFiltro.value+'T00:00',fechaFinFiltro.value+'T23:59');
+  }else{
+    estadisticas = listaTareasAgregadas.tareasTerminadasPorCategoria();
+  }
   var elemento=`<ul><li>Sin categoria:[${estadisticas["Sin categoria"][0]}  |  ${estadisticas["Sin categoria"][1]}]</li><li>Personal:[${estadisticas["Personal"][0]}  |  ${estadisticas["Personal"][1]}]</li><li>Trabajo:[${estadisticas["Trabajo"][0]}  |  ${estadisticas["Trabajo"][1]}]</li><li>Estudio:[${estadisticas["Estudio"][0]}  |  ${estadisticas["Estudio"][1]}]</li><ul>`;
   terminadas.innerHTML= elemento;
  
@@ -56,7 +62,6 @@ selectorFiltro.addEventListener('change',
       botonBuscarEtiquetaTerminada.style.display = "none";
       divFiltroFecha.style.display = "none";
     }
-  
  });
 
  function mostrarOpcionesEstadisticas(){
@@ -131,11 +136,19 @@ fechaFiltro.addEventListener("click", (e)=>{
     var listaTareasIds = listaTareasAgregadas.filtrarPorUnRangoFechas(fechaInicioFiltro.value+'T00:00',fechaFinFiltro.value+'T23:59');
     var listaTareasFiltradas = listaTareasAgregadas.getListaPorIds(listaTareasIds);
     var EtiquetaTerminada= listaTareasAgregadas.filtrarPorUnRangoFechasYEtiqueta(fechaInicioFiltro.value,fechaFinFiltro.value,textoFiltroTerminado.value);
+
     if(listaTareasFiltradas.getCantidadTareas()==0) alert("No existe");
     listaTareas.innerHTML = listaTareasFiltradas.getListaTareasHtml();
+
     if(selectorTipoEstadisticas.value=="Etiqueta" && textoFiltroTerminado.value != "" ){
       terminadas.innerHTML=`${textoFiltroTerminado.value} :[${String(EtiquetaTerminada[0])}, ${EtiquetaTerminada[1]} ]`;
       terminadas.style.display = "block";
+    }
+
+    if(selectorTipoEstadisticas.value=="Categorias"){
+      var filtro = true;
+      console.log("entraste a filtro categoria --- ")
+      obtenerEstadisticasPorCategoria(filtro);
     }
     click();
     check();
