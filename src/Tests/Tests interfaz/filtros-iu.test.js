@@ -97,7 +97,7 @@ describe("Filtrar por titulo/descripcion", () => {
 
     expect(categoriaFiltro.style.display).toEqual("block");
   });
-
+/*
   it("deberia mostrar la tarea correspondiente a la etiqueta filtrada", () => {
     const tarea_elem = document.querySelector("#tarea");  
     const lista_elem = document.querySelector("#lista-tareas");
@@ -112,6 +112,7 @@ describe("Filtrar por titulo/descripcion", () => {
     botonBuscar.click();
     expect(lista_elem.innerHTML).toEqual("<ul><li>Primera tarea[Sin categoria]<span class=\"etiquetas\">#fisica</span><span class=\"fecha-limite\"><input class=\"checkbox-terminada\" type=\"checkbox\" id=\"tarea-1\" value=\"terminada \"></span></li></ul>");
   });
+  */
   // Filtro por estado de Tarea
   it("deberia mostrar las tareas correspondientes al 'estado' filtrado", () => {
     const tarea_elem = document.querySelector("#tarea");  

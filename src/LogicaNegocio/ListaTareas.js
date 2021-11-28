@@ -203,8 +203,14 @@ class ListaTareas{
         return this.ListaTareas.filter(tarea=>tarea.getEstado() == tipoEstado ).map(tarea=>tarea.getId() ); 
     }
 
-    getArrayEstadisticasTerminadasPorCategoria(categoria){
-        var tareasCategoria =  this.ListaTareas.filter(tarea=>tarea.getCategoria() == categoria);
+    getArrayEstadisticasTerminadasPorCategoria(categoria , fechaInicial=null, fechaFin=null){
+        var tareasCategoria;
+        if (fechaInicial == null ){
+            tareasCategoria =  this.ListaTareas.filter( tarea=>tarea.getCategoria() == categoria );
+        }else{
+            tareasCategoria =  this.ListaTareas.filter( tarea=>tarea.getCategoria() == categoria && tarea.getFechaLimite() >= fechaInicial && tarea.getFechaLimite() <= fechaFin );
+        }
+
         var cantidadTotalTareasCategoria = tareasCategoria.length;
         if (cantidadTotalTareasCategoria==0) return [categoria]=[0,"0%"];
         var cantidadTerminadasTareasCategoria =  tareasCategoria.filter(tarea=>tarea.estaTerminada()).length;  
@@ -212,12 +218,12 @@ class ListaTareas{
         return [cantidadTerminadasTareasCategoria,`${porcentajeTareasCategoriaTerminadas.toFixed(2)*100}%`]
     }    
 
-    tareasTerminadasPorCategoria(){   
+    tareasTerminadasPorCategoria(fechaInicial=null,fechaFinal=null){   
         var cantidadTareasCategoriaTerminadas={};              
-        cantidadTareasCategoriaTerminadas["Personal"]=this.getArrayEstadisticasTerminadasPorCategoria("Personal");
-        cantidadTareasCategoriaTerminadas["Trabajo"]=this.getArrayEstadisticasTerminadasPorCategoria("Trabajo");
-        cantidadTareasCategoriaTerminadas["Estudio"]=this.getArrayEstadisticasTerminadasPorCategoria("Estudio");
-        cantidadTareasCategoriaTerminadas["Sin categoria"]=this.getArrayEstadisticasTerminadasPorCategoria("Sin categoria");        
+        cantidadTareasCategoriaTerminadas["Personal"]=this.getArrayEstadisticasTerminadasPorCategoria("Personal",fechaInicial,fechaFinal);
+        cantidadTareasCategoriaTerminadas["Trabajo"]=this.getArrayEstadisticasTerminadasPorCategoria("Trabajo",fechaInicial,fechaFinal);
+        cantidadTareasCategoriaTerminadas["Estudio"]=this.getArrayEstadisticasTerminadasPorCategoria("Estudio",fechaInicial,fechaFinal);
+        cantidadTareasCategoriaTerminadas["Sin categoria"]=this.getArrayEstadisticasTerminadasPorCategoria("Sin categoria",fechaInicial,fechaFinal);        
         return cantidadTareasCategoriaTerminadas;
     }
     filtrarPorUnaFechaYEtiqueta(fecha,etiqueta){
@@ -250,6 +256,11 @@ class ListaTareas{
         return num;
     }
 
+    tareasTerminadasPorCategoria_PorRangoDeFecha(fechaInicio,fechaFin){
+        var fechaInicio_conFormato = new Date(fechaInicio);
+        var fechaFin_conFormato = new Date(fechaFin);
+        return this.tareasTerminadasPorCategoria(fechaInicio_conFormato,fechaFin_conFormato);
+    }
 }
 
 export default ListaTareas;
